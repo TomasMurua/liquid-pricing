@@ -37,14 +37,14 @@
     if (!rawOrden) {
       renderSinOrden();
     } else {
-      let orden;
+      let orden = null;
       try {
         orden = JSON.parse(rawOrden);
       } catch (_) {
-        renderSinOrden();
-        return;
+        orden = null;
       }
-      renderConfirmacion(orden);
+      if (orden) renderConfirmacion(orden);
+      else renderSinOrden();
     }
 
     // ── Sin orden reciente ────────────────────────────────────
