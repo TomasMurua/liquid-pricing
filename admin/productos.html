@@ -272,7 +272,6 @@
       btnRem.addEventListener('click', () => {
         div.remove();
         if (listaOfertas.querySelectorAll('.fila-oferta').length === 0) {
-          crearFilaOferta();
           listaOfertas.appendChild(crearFilaOferta());
         }
       });
