@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Iniciar sesión · Liquid Pricing</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/estilos.css" rel="stylesheet">
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <main class="container py-4 py-md-5">
+    <div class="row justify-content-center">
+      <div class="col-12 col-sm-8 col-md-6 col-lg-4 mx-auto">
+
+        <!-- Marca centrada -->
+        <div class="text-center mb-4">
+          <div class="mb-2" style="font-size:2.5rem; line-height:1;">💧</div>
+          <h1 class="h3 lp-heading mb-0">
+            Liquid<span style="color:var(--lp-accent);">Pricing</span>
+          </h1>
+          <p class="text-muted small mt-1">Comparador de precios · Chile</p>
+        </div>
+
+        <!-- Card -->
+        <div class="lp-card">
+          <h2 class="lp-card-title text-center mb-4">Iniciar sesión</h2>
+
+          <!-- Alerta de error -->
+          <div id="alerta-error" class="alert alert-danger d-none" role="alert"></div>
+
+          <form id="form-login" novalidate>
+
+            <!-- Email -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Correo electrónico</label>
+              <input
+                type="email"
+                id="email"
+                class="form-control"
+                placeholder="correo@ejemplo.cl"
+                autocomplete="email"
+                required
+              >
+              <div class="invalid-feedback">Ingresa un correo electrónico válido.</div>
+            </div>
+
+            <!-- Contraseña con toggle -->
+            <div class="mb-4">
+              <label for="password" class="form-label">Contraseña</label>
+              <div class="input-group">
+                <input
+                  type="password"
+                  id="password"
+                  class="form-control"
+                  placeholder="Tu contraseña"
+                  autocomplete="current-password"
+                  required
+                >
+                <button
+                  class="btn btn-outline-secondary"
+                  type="button"
+                  id="btn-toggle-pw"
+                  aria-label="Mostrar u ocultar contraseña"
+                  tabindex="-1"
+                >
+                  <i class="bi bi-eye" id="icon-toggle-pw"></i>
+                </button>
+              </div>
+              <div id="fb-password" class="invalid-feedback d-block" style="display:none!important;"></div>
+            </div>
+
+            <!-- Botón submit -->
+            <button type="submit" id="btn-submit" class="btn btn-primary w-100 mb-3">
+              Ingresar
+            </button>
+
+          </form>
+
+          <!-- Links -->
+          <div class="text-center small">
+            <p class="mb-1">
+              ¿No tienes cuenta?
+              <a href="registro.html">Regístrate</a>
+            </p>
+            <p class="mb-0">
+              <a href="recuperar.html" class="text-muted">¿Olvidaste tu contraseña?</a>
+            </p>
+          </div>
+        </div>
+
+        <!-- Credenciales demo para el profesor -->
+        <div class="text-center text-muted small mt-3">
+          <p class="mb-0">
+            <strong>Demo:</strong>
+            admin@liquid.cl / Admin123!
+            &nbsp;·&nbsp;
+            cliente@liquid.cl / Cliente123!
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="lp-footer text-center py-4 mt-5 text-muted">
+    <div class="container small">© 2026 Liquid Pricing · Comparador de precios · Proyecto académico DSY2202</div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module">
+    import { renderNavbar } from './js/ui.js';
+    import { login, getSesion } from './js/auth.js';
+    import { emailValido, requerido, marcar } from './js/validaciones.js';
+
+    renderNavbar();
+
+    // Si ya hay sesión activa, redirigir de inmediato
+    const sesionActiva = getSesion();
+    if (sesionActiva) {
+      window.location.href = sesionActiva.rol === 'admin'
+        ? 'admin/dashboard.html'
+        : 'catalogo.html';
+    }
+
+    const form       = document.getElementById('form-login');
+    const inputEmail = document.getElementById('email');
+    const inputPw    = document.getElementById('password');
+    const btnToggle  = document.getElementById('btn-toggle-pw');
+    const iconToggle = document.getElementById('icon-toggle-pw');
+    const alertaErr  = document.getElementById('alerta-error');
+    const btnSubmit  = document.getElementById('btn-submit');
+
+    // ── Show/hide password ───────────────────────────────────────
+    btnToggle.addEventListener('click', () => {
+      const visible = inputPw.type === 'text';
+      inputPw.type = visible ? 'password' : 'text';
+      iconToggle.className = visible ? 'bi bi-eye' : 'bi bi-eye-slash';
+    });
+
+    // ── Live validation ──────────────────────────────────────────
+    function validarEmail() {
+      return marcar(inputEmail, emailValido(inputEmail.value));
+    }
+    function validarPw() {
+      return marcar(inputPw, requerido(inputPw.value));
+    }
+
+    inputEmail.addEventListener('input', validarEmail);
+    inputEmail.addEventListener('blur', validarEmail);
+    inputPw.addEventListener('input', validarPw);
+    inputPw.addEventListener('blur', validarPw);
+
+    // ── Submit ───────────────────────────────────────────────────
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const okEmail = validarEmail();
+      const okPw    = validarPw();
+      if (!okEmail || !okPw) return;
+
+      btnSubmit.disabled = true;
+      btnSubmit.textContent = 'Ingresando…';
+      alertaErr.classList.add('d-none');
+
+      const usuario = await login(inputEmail.value.trim(), inputPw.value);
+
+      if (usuario) {
+        window.location.href = usuario.rol === 'admin'
+          ? 'admin/dashboard.html'
+          : 'catalogo.html';
+      } else {
+        alertaErr.textContent = 'Correo o contraseña incorrectos.';
+        alertaErr.classList.remove('d-none');
+        btnSubmit.disabled = false;
+        btnSubmit.textContent = 'Ingresar';
+        marcar(inputEmail, false);
+        marcar(inputPw, false);
+      }
+    });
+  </script>
+</body>
+</html>
