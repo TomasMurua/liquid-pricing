@@ -72,7 +72,6 @@
     import { requiereRol } from './js/auth.js';
     import { getProductos, mejorPrecio } from './js/datos.js';
     import { formatoCLP, estrellas } from './js/ui.js';
-    import { esFavorito, toggleFavorito } from './js/carrito.js';
 
     requiereRol('cliente');
     renderNavbar();
@@ -160,7 +159,6 @@
     // ── Creación de card (DOM seguro) ──────────────────────────
     function crearCard(p) {
       const precio = mejorPrecio(p);
-      const fav    = esFavorito(p.id);
 
       const card = document.createElement('div');
       card.className = 'card-producto';
@@ -210,25 +208,12 @@
       const footer = document.createElement('div');
       footer.className = 'card-footer-actions';
 
-      // Botón favorito
-      const btnFav = document.createElement('button');
-      btnFav.type = 'button';
-      btnFav.className = 'btn btn-sm btn-outline-secondary';
-      btnFav.setAttribute('aria-label', fav ? 'Quitar de favoritos' : 'Agregar a favoritos');
-      btnFav.innerHTML = `<i class="bi ${fav ? 'bi-heart-fill text-danger' : 'bi-heart'}"></i>`;
-      btnFav.addEventListener('click', () => {
-        const nuevoEstado = toggleFavorito(p.id);
-        btnFav.innerHTML = `<i class="bi ${nuevoEstado ? 'bi-heart-fill text-danger' : 'bi-heart'}"></i>`;
-        btnFav.setAttribute('aria-label', nuevoEstado ? 'Quitar de favoritos' : 'Agregar a favoritos');
-      });
-
       // Botón ver ofertas
       const btnVer = document.createElement('a');
       btnVer.className = 'btn btn-primary btn-sm flex-grow-1';
       btnVer.href = `producto.html?id=${p.id}`;
       btnVer.textContent = 'Ver ofertas';
 
-      footer.appendChild(btnFav);
       footer.appendChild(btnVer);
 
       body.appendChild(catBadge);

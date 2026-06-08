@@ -121,7 +121,7 @@
     const sesionActiva = getSesion();
     if (sesionActiva) {
       window.location.href = sesionActiva.rol === 'admin'
-        ? 'admin/dashboard.html'
+        ? 'admin/productos.html'
         : 'catalogo.html';
     }
 
@@ -169,7 +169,7 @@
 
       if (usuario) {
         window.location.href = usuario.rol === 'admin'
-          ? 'admin/dashboard.html'
+          ? 'admin/productos.html'
           : 'catalogo.html';
       } else {
         alertaErr.textContent = 'Correo o contraseña incorrectos.';

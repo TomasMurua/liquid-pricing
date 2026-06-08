@@ -1,14 +1,13 @@
 /**
- * carrito.js — Módulo de carrito, favoritos e historial de compras.
+ * carrito.js — Módulo de carrito e historial de compras.
  * Importar con: import { getCarrito, agregar, ... } from './js/carrito.js'
  */
 
 import { getSesion } from './auth.js';
 
 /** Claves en localStorage */
-const LS_CARRITO   = 'lp_carrito';
-const LS_FAVORITOS = 'lp_favoritos';
-const LS_COMPRAS   = 'lp_compras';
+const LS_CARRITO = 'lp_carrito';
+const LS_COMPRAS = 'lp_compras';
 
 // ============================================================
 // Helpers de persistencia
@@ -113,46 +112,6 @@ export function contarItems() {
  */
 export function vaciar() {
   _guardar(LS_CARRITO, []);
-}
-
-// ============================================================
-// FAVORITOS
-// ============================================================
-
-/**
- * Retorna el arreglo de productoId marcados como favoritos.
- * @returns {number[]}
- */
-export function getFavoritos() {
-  return _leer(LS_FAVORITOS);
-}
-
-/**
- * Agrega o quita un producto de favoritos.
- * @param {number} productoId
- * @returns {boolean} Nuevo estado: true = está en favoritos.
- */
-export function toggleFavorito(productoId) {
-  const favs = getFavoritos();
-  const idx = favs.indexOf(productoId);
-  if (idx >= 0) {
-    favs.splice(idx, 1);
-    _guardar(LS_FAVORITOS, favs);
-    return false;
-  } else {
-    favs.push(productoId);
-    _guardar(LS_FAVORITOS, favs);
-    return true;
-  }
-}
-
-/**
- * Indica si un producto está en favoritos.
- * @param {number} productoId
- * @returns {boolean}
- */
-export function esFavorito(productoId) {
-  return getFavoritos().includes(productoId);
 }
 
 // ============================================================

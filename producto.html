@@ -39,7 +39,7 @@
     import { requiereRol } from './js/auth.js';
     import { getProducto } from './js/datos.js';
     import { formatoCLP, estrellas } from './js/ui.js';
-    import { agregar, esFavorito, toggleFavorito } from './js/carrito.js';
+    import { agregar } from './js/carrito.js';
 
     requiereRol('cliente');
     renderNavbar();
@@ -163,14 +163,7 @@
       btnCarrito.className = 'btn btn-primary';
       btnCarrito.innerHTML = '<i class="bi bi-cart-plus me-2"></i>Agregar al carrito';
 
-      const favActual = esFavorito(p.id);
-      const btnFav = document.createElement('button');
-      btnFav.type = 'button';
-      btnFav.className = 'btn btn-outline-secondary';
-      btnFav.innerHTML = `<i class="bi ${favActual ? 'bi-heart-fill text-danger' : 'bi-heart'} me-1"></i>${favActual ? 'En favoritos' : 'Favorito'}`;
-
       acciones.appendChild(btnCarrito);
-      acciones.appendChild(btnFav);
 
       // Tabla de comparación
       const tablaSection = document.createElement('div');
@@ -276,10 +269,6 @@
         toast.show();
       });
 
-      btnFav.addEventListener('click', () => {
-        const nuevoEstado = toggleFavorito(p.id);
-        btnFav.innerHTML = `<i class="bi ${nuevoEstado ? 'bi-heart-fill text-danger' : 'bi-heart'} me-1"></i>${nuevoEstado ? 'En favoritos' : 'Favorito'}`;
-      });
     }
   </script>
 </body>

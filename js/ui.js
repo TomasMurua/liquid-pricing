@@ -93,7 +93,7 @@ export function renderNavbar(contenedorId = "navbar") {
   const brandHref = rol === "cliente"
     ? `${base}catalogo.html`
     : rol === "admin"
-    ? `${base}admin/dashboard.html`
+    ? `${base}admin/productos.html`
     : `${base}index.html`;
 
   const brandHTML = `
@@ -117,9 +117,6 @@ export function renderNavbar(contenedorId = "navbar") {
     // ---- ADMIN ----
     linksHTML = `
       <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
-        <li class="nav-item">
-          <a class="nav-link" href="${base}admin/dashboard.html">Dashboard</a>
-        </li>
         <li class="nav-item">
           <a class="nav-link" href="${base}admin/productos.html">Productos</a>
         </li>
