@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Carrito · Liquid Pricing</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/estilos.css" rel="stylesheet">
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <main class="container py-4 py-md-5">
+
+    <div class="lp-section-header mb-4">
+      <h1 class="h3">Mi carrito</h1>
+    </div>
+
+    <!-- Contenido dinámico (tabla o estado vacío) -->
+    <div id="contenido-carrito"></div>
+
+  </main>
+
+  <footer class="lp-footer text-center py-4 mt-5 text-muted">
+    <div class="container small">© 2026 Liquid Pricing · Comparador de precios · Proyecto académico DSY2202</div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module">
+    import { renderNavbar } from './js/ui.js';
+    import { requiereRol } from './js/auth.js';
+    import { formatoCLP } from './js/ui.js';
+    import { getCarrito, quitar, cambiarCantidad, total } from './js/carrito.js';
+
+    requiereRol('cliente');
+    renderNavbar();
+
+    const contenedor = document.getElementById('contenido-carrito');
+
+    // Render completo del carrito (se llama tras cada cambio)
+    function render() {
+      contenedor.innerHTML = '';
+      const items = getCarrito();
+
+      if (items.length === 0) {
+        renderVacio();
+        return;
+      }
+
+      renderTabla(items);
+      renderNavbar(); // actualiza badge
+    }
+
+    // ── Estado vacío ──────────────────────────────────────────
+    function renderVacio() {
+      const wrap = document.createElement('div');
+      wrap.className = 'text-center py-5';
+
+      const icon = document.createElement('i');
+      icon.className = 'bi bi-cart3';
+      icon.style.cssText = 'font-size:3.5rem; color:var(--lp-muted);';
+
+      const msg = document.createElement('p');
+      msg.className = 'mt-3 text-muted fs-5';
+      msg.textContent = 'Tu carrito está vacío.';
+
+      const sub = document.createElement('p');
+      sub.className = 'text-muted small';
+      sub.textContent = 'Agrega productos desde el catálogo para comparar y comprar al mejor precio.';
+
+      const btn = document.createElement('a');
+      btn.href = 'catalogo.html';
+      btn.className = 'btn btn-primary mt-2';
+      btn.innerHTML = '<i class="bi bi-grid me-2"></i>Ver catálogo';
+
+      wrap.appendChild(icon);
+      wrap.appendChild(msg);
+      wrap.appendChild(sub);
+      wrap.appendChild(btn);
+      contenedor.appendChild(wrap);
+    }
+
+    // ── Tabla de ítems ─────────────────────────────────────────
+    function renderTabla(items) {
+      const tableWrap = document.createElement('div');
+      tableWrap.className = 'table-responsive';
+
+      const tabla = document.createElement('table');
+      tabla.className = 'tabla-ofertas w-100';
+
+      // Encabezado
+      const thead = document.createElement('thead');
+      const trHead = document.createElement('tr');
+      ['Producto', 'Tienda', 'Precio unit.', 'Cantidad', 'Subtotal', ''].forEach(col => {
+        const th = document.createElement('th');
+        th.textContent = col;
+        trHead.appendChild(th);
+      });
+      thead.appendChild(trHead);
+
+      // Cuerpo
+      const tbody = document.createElement('tbody');
+      items.forEach((item, idx) => {
+        const tr = crearFila(item, idx);
+        tbody.appendChild(tr);
+      });
+
+      tabla.appendChild(thead);
+      tabla.appendChild(tbody);
+      tableWrap.appendChild(tabla);
+
+      // Resumen y acciones
+      const resumen = crearResumen(items);
+
+      contenedor.appendChild(tableWrap);
+      contenedor.appendChild(resumen);
+    }
+
+    // ── Fila de ítem ──────────────────────────────────────────
+    function crearFila(item, idx) {
+      const tr = document.createElement('tr');
+
+      // Producto (imagen + nombre)
+      const tdProd = document.createElement('td');
+      const prodWrap = document.createElement('div');
+      prodWrap.className = 'd-flex align-items-center gap-3';
+
+      const img = document.createElement('img');
+      img.src = item.imagen;
+      img.alt = item.nombre;
+      img.style.cssText = 'width:52px; height:52px; object-fit:contain; border-radius:var(--lp-radius-sm); background:var(--lp-surface-alt); flex-shrink:0;';
+
+      const nombre = document.createElement('span');
+      nombre.className = 'fw-semibold';
+      nombre.style.fontSize = 'var(--lp-text-sm)';
+      nombre.textContent = item.nombre;
+
+      prodWrap.appendChild(img);
+      prodWrap.appendChild(nombre);
+      tdProd.appendChild(prodWrap);
+
+      // Tienda
+      const tdTienda = document.createElement('td');
+      const tiendaSpan = document.createElement('span');
+      tiendaSpan.className = 'nombre-tienda';
+      tiendaSpan.textContent = item.tienda;
+      tdTienda.appendChild(tiendaSpan);
+
+      // Precio unitario
+      const tdPrecio = document.createElement('td');
+      tdPrecio.className = 'precio-oferta';
+      tdPrecio.textContent = formatoCLP(item.precio);
+
+      // Control de cantidad
+      const tdCantidad = document.createElement('td');
+      const cantWrap = document.createElement('div');
+      cantWrap.className = 'd-flex align-items-center gap-1';
+
+      const btnMenos = document.createElement('button');
+      btnMenos.type = 'button';
+      btnMenos.className = 'btn btn-sm btn-outline-secondary';
+      btnMenos.style.lineHeight = '1';
+      btnMenos.innerHTML = '<i class="bi bi-dash"></i>';
+      btnMenos.setAttribute('aria-label', 'Reducir cantidad');
+
+      const inputCant = document.createElement('input');
+      inputCant.type = 'number';
+      inputCant.min = '1';
+      inputCant.value = item.cantidad;
+      inputCant.className = 'form-control form-control-sm text-center';
+      inputCant.style.width = '56px';
+      inputCant.setAttribute('aria-label', 'Cantidad');
+
+      const btnMas = document.createElement('button');
+      btnMas.type = 'button';
+      btnMas.className = 'btn btn-sm btn-outline-secondary';
+      btnMas.style.lineHeight = '1';
+      btnMas.innerHTML = '<i class="bi bi-plus"></i>';
+      btnMas.setAttribute('aria-label', 'Aumentar cantidad');
+
+      btnMenos.addEventListener('click', () => {
+        cambiarCantidad(idx, item.cantidad - 1);
+        render();
+      });
+      btnMas.addEventListener('click', () => {
+        cambiarCantidad(idx, item.cantidad + 1);
+        render();
+      });
+      inputCant.addEventListener('change', () => {
+        const v = parseInt(inputCant.value, 10);
+        cambiarCantidad(idx, isNaN(v) ? 1 : v);
+        render();
+      });
+
+      cantWrap.appendChild(btnMenos);
+      cantWrap.appendChild(inputCant);
+      cantWrap.appendChild(btnMas);
+      tdCantidad.appendChild(cantWrap);
+
+      // Subtotal
+      const tdSubtotal = document.createElement('td');
+      tdSubtotal.className = 'precio-oferta';
+      tdSubtotal.textContent = formatoCLP(item.precio * item.cantidad);
+
+      // Quitar
+      const tdQuitar = document.createElement('td');
+      const btnQuitar = document.createElement('button');
+      btnQuitar.type = 'button';
+      btnQuitar.className = 'btn btn-sm btn-outline-danger';
+      btnQuitar.innerHTML = '<i class="bi bi-trash3"></i>';
+      btnQuitar.setAttribute('aria-label', 'Quitar producto');
+      btnQuitar.addEventListener('click', () => {
+        quitar(idx);
+        render();
+      });
+      tdQuitar.appendChild(btnQuitar);
+
+      tr.appendChild(tdProd);
+      tr.appendChild(tdTienda);
+      tr.appendChild(tdPrecio);
+      tr.appendChild(tdCantidad);
+      tr.appendChild(tdSubtotal);
+      tr.appendChild(tdQuitar);
+
+      return tr;
+    }
+
+    // ── Resumen y botones ─────────────────────────────────────
+    function crearResumen(items) {
+      const wrap = document.createElement('div');
+      wrap.className = 'row justify-content-end mt-4';
+
+      const col = document.createElement('div');
+      col.className = 'col-12 col-md-5 col-lg-4';
+
+      const card = document.createElement('div');
+      card.className = 'lp-card';
+
+      const titleEl = document.createElement('h2');
+      titleEl.className = 'lp-card-title';
+      titleEl.textContent = 'Resumen';
+
+      const totalItems = items.reduce((acc, i) => acc + i.cantidad, 0);
+      const totalLinea = document.createElement('div');
+      totalLinea.className = 'd-flex justify-content-between mb-2 text-muted small';
+      const totalItemsSpan = document.createElement('span');
+      totalItemsSpan.textContent = `${totalItems} unidad${totalItems !== 1 ? 'es' : ''}`;
+      totalLinea.appendChild(document.createTextNode('Productos:'));
+      totalLinea.appendChild(totalItemsSpan);
+
+      const divider = document.createElement('hr');
+      divider.className = 'lp-divider my-2';
+
+      const totalFila = document.createElement('div');
+      totalFila.className = 'd-flex justify-content-between fw-bold fs-5 mb-4';
+      const totalLabel = document.createElement('span');
+      totalLabel.textContent = 'Total';
+      const totalValor = document.createElement('span');
+      totalValor.className = 'text-lp-primary';
+      totalValor.textContent = formatoCLP(total());
+      totalFila.appendChild(totalLabel);
+      totalFila.appendChild(totalValor);
+
+      const btnPagar = document.createElement('a');
+      btnPagar.href = 'checkout.html';
+      btnPagar.className = 'btn btn-primary w-100 mb-2';
+      btnPagar.innerHTML = '<i class="bi bi-credit-card me-2"></i>Ir a pagar';
+
+      const btnContinuar = document.createElement('a');
+      btnContinuar.href = 'catalogo.html';
+      btnContinuar.className = 'btn btn-outline-primary w-100';
+      btnContinuar.innerHTML = '<i class="bi bi-grid me-2"></i>Seguir comprando';
+
+      card.appendChild(titleEl);
+      card.appendChild(totalLinea);
+      card.appendChild(divider);
+      card.appendChild(totalFila);
+      card.appendChild(btnPagar);
+      card.appendChild(btnContinuar);
+
+      col.appendChild(card);
+      wrap.appendChild(col);
+      return wrap;
+    }
+
+    // Render inicial
+    render();
+  </script>
+</body>
+</html>
