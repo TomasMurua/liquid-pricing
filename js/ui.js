@@ -198,7 +198,8 @@ export function renderNavbar(contenedorId = "navbar") {
 }
 
 /**
- * Lee la cantidad de ítems en el carrito desde localStorage.
+ * Suma las unidades totales del carrito desde localStorage.
+ * Usa la propiedad `cantidad` de cada ítem (1 por defecto si falta).
  * @returns {number}
  */
 function _contarCarrito() {
@@ -206,8 +207,8 @@ function _contarCarrito() {
     const raw = localStorage.getItem("lp_carrito");
     if (!raw) return 0;
     const carrito = JSON.parse(raw);
-    if (Array.isArray(carrito)) return carrito.length;
-    return 0;
+    if (!Array.isArray(carrito)) return 0;
+    return carrito.reduce((sum, item) => sum + (Number(item.cantidad) || 1), 0);
   } catch (_) {
     return 0;
   }
