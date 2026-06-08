@@ -8,6 +8,11 @@ const LS_PRODUCTOS    = "lp_productos";
 const LS_USUARIOS     = "lp_usuarios";
 const LS_USUARIOS_DEL = "lp_usuarios_del";
 
+// Rutas a los JSON resueltas relativas a ESTE módulo (js/ → ../data/),
+// para que funcionen igual desde páginas en la raíz y dentro de admin/.
+const URL_PRODUCTOS = new URL("../data/productos.json", import.meta.url);
+const URL_USUARIOS  = new URL("../data/usuarios.json", import.meta.url);
+
 /**
  * Retorna el arreglo completo de productos.
  * Prioridad: localStorage > fetch data/productos.json
@@ -23,7 +28,7 @@ export async function getProductos() {
     }
   }
   try {
-    const res = await fetch("data/productos.json");
+    const res = await fetch(URL_PRODUCTOS);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     return await res.json();
   } catch (e) {
@@ -59,7 +64,7 @@ export function setProductos(arr) {
 export async function getUsuarios() {
   let seed = [];
   try {
-    const res = await fetch("data/usuarios.json");
+    const res = await fetch(URL_USUARIOS);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     seed = await res.json();
   } catch (e) {
