@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pagar · Liquid Pricing</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/estilos.css" rel="stylesheet">
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <main class="container py-4 py-md-5">
+
+    <div class="lp-section-header mb-4">
+      <h1 class="h3">Finalizar compra</h1>
+    </div>
+
+    <div id="contenido-checkout"></div>
+
+  </main>
+
+  <footer class="lp-footer text-center py-4 mt-5 text-muted">
+    <div class="container small">© 2026 Liquid Pricing · Comparador de precios · Proyecto académico DSY2202</div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module">
+    import { renderNavbar } from './js/ui.js';
+    import { requiereRol } from './js/auth.js';
+    import { formatoCLP } from './js/ui.js';
+    import { getCarrito, total, registrarCompra } from './js/carrito.js';
+    import { requerido, marcar } from './js/validaciones.js';
+
+    requiereRol('cliente');
+    renderNavbar();
+
+    const contenedor = document.getElementById('contenido-checkout');
+    const items = getCarrito();
+
+    if (items.length === 0) {
+      renderVacio();
+    } else {
+      renderFormulario(items);
+    }
+
+    // ── Estado vacío ──────────────────────────────────────────
+    function renderVacio() {
+      const wrap = document.createElement('div');
+      wrap.className = 'text-center py-5';
+
+      const icon = document.createElement('i');
+      icon.className = 'bi bi-cart-x';
+      icon.style.cssText = 'font-size:3.5rem; color:var(--lp-muted);';
+
+      const msg = document.createElement('p');
+      msg.className = 'mt-3 text-muted fs-5';
+      msg.textContent = 'Tu carrito está vacío.';
+
+      const sub = document.createElement('p');
+      sub.className = 'text-muted small';
+      sub.textContent = 'Agrega productos antes de continuar con el pago.';
+
+      const btn = document.createElement('a');
+      btn.href = 'catalogo.html';
+      btn.className = 'btn btn-primary mt-2';
+      btn.innerHTML = '<i class="bi bi-grid me-2"></i>Ver catálogo';
+
+      wrap.appendChild(icon);
+      wrap.appendChild(msg);
+      wrap.appendChild(sub);
+      wrap.appendChild(btn);
+      contenedor.appendChild(wrap);
+    }
+
+    // ── Formulario + resumen ──────────────────────────────────
+    function renderFormulario(items) {
+      // Aviso de pago simulado
+      const aviso = document.createElement('div');
+      aviso.className = 'alert alert-info d-flex align-items-start gap-2 mb-4';
+      aviso.setAttribute('role', 'alert');
+      aviso.innerHTML = `
+        <i class="bi bi-info-circle-fill flex-shrink-0 mt-1"></i>
+        <span><strong>Pago simulado</strong> — no se procesa ningún pago real ni se solicitan datos de tarjeta.</span>`;
+
+      // Row principal
+      const row = document.createElement('div');
+      row.className = 'row g-4';
+
+      // Columna izquierda: formulario
+      const colForm = document.createElement('div');
+      colForm.className = 'col-12 col-md-7';
+
+      const cardForm = document.createElement('div');
+      cardForm.className = 'lp-card';
+
+      const tituloForm = document.createElement('h2');
+      tituloForm.className = 'lp-card-title mb-4';
+      tituloForm.textContent = 'Datos de envío';
+
+      const form = document.createElement('form');
+      form.id = 'form-envio';
+      form.noValidate = true;
+
+      form.appendChild(crearCampo('nombre', 'Nombre completo', 'text', 'Ej: María González'));
+      form.appendChild(crearCampo('direccion', 'Dirección', 'text', 'Ej: Av. Providencia 1234'));
+      form.appendChild(crearCampo('comuna', 'Comuna', 'text', 'Ej: Providencia'));
+      form.appendChild(crearCampo('telefono', 'Teléfono', 'tel', 'Ej: 987654321'));
+
+      cardForm.appendChild(tituloForm);
+      cardForm.appendChild(form);
+      colForm.appendChild(cardForm);
+
+      // Columna derecha: resumen
+      const colRes = document.createElement('div');
+      colRes.className = 'col-12 col-md-5';
+
+      const cardRes = document.createElement('div');
+      cardRes.className = 'lp-card';
+
+      const tituloRes = document.createElement('h2');
+      tituloRes.className = 'lp-card-title mb-3';
+      tituloRes.textContent = 'Resumen del pedido';
+
+      const lista = document.createElement('ul');
+      lista.className = 'list-unstyled mb-3';
+
+      items.forEach(item => {
+        const li = document.createElement('li');
+        li.className = 'd-flex flex-column mb-3 pb-3 border-bottom';
+
+        const nombre = document.createElement('span');
+        nombre.className = 'fw-semibold';
+        nombre.textContent = item.nombre;
+
+        const meta = document.createElement('span');
+        meta.className = 'text-muted small';
+        meta.textContent = `${item.tienda} · ${item.cantidad} ud.`;
+
+        const subtotal = document.createElement('span');
+        subtotal.className = 'text-lp-primary fw-semibold';
+        subtotal.textContent = formatoCLP(item.precio * item.cantidad);
+
+        li.appendChild(nombre);
+        li.appendChild(meta);
+        li.appendChild(subtotal);
+        lista.appendChild(li);
+      });
+
+      const divider = document.createElement('hr');
+      divider.className = 'lp-divider my-2';
+
+      const totalFila = document.createElement('div');
+      totalFila.className = 'd-flex justify-content-between fw-bold fs-5 mb-4';
+      const totalLabel = document.createElement('span');
+      totalLabel.textContent = 'Total';
+      const totalValor = document.createElement('span');
+      totalValor.className = 'text-lp-primary';
+      totalValor.textContent = formatoCLP(total());
+      totalFila.appendChild(totalLabel);
+      totalFila.appendChild(totalValor);
+
+      const btnPagar = document.createElement('button');
+      btnPagar.type = 'button';
+      btnPagar.id = 'btn-pagar';
+      btnPagar.className = 'btn btn-primary w-100';
+      btnPagar.disabled = true;
+      btnPagar.innerHTML = '<i class="bi bi-credit-card me-2"></i>Pagar ahora';
+
+      cardRes.appendChild(tituloRes);
+      cardRes.appendChild(lista);
+      cardRes.appendChild(divider);
+      cardRes.appendChild(totalFila);
+      cardRes.appendChild(btnPagar);
+      colRes.appendChild(cardRes);
+
+      row.appendChild(colForm);
+      row.appendChild(colRes);
+
+      contenedor.appendChild(aviso);
+      contenedor.appendChild(row);
+
+      // Validación en vivo
+      const inputs = form.querySelectorAll('input');
+      inputs.forEach(inp => {
+        inp.addEventListener('input', () => {
+          validarCampo(inp);
+          actualizarBoton();
+        });
+        inp.addEventListener('blur', () => {
+          validarCampo(inp);
+          actualizarBoton();
+        });
+      });
+
+      // Click pagar
+      btnPagar.addEventListener('click', () => {
+        // Validar todos antes de proceder
+        let todosValidos = true;
+        inputs.forEach(inp => {
+          if (!validarCampo(inp)) todosValidos = false;
+        });
+        if (!todosValidos) {
+          actualizarBoton();
+          return;
+        }
+
+        const envio = {
+          nombre:    form.querySelector('#campo-nombre').value.trim(),
+          direccion: form.querySelector('#campo-direccion').value.trim(),
+          comuna:    form.querySelector('#campo-comuna').value.trim(),
+          telefono:  form.querySelector('#campo-telefono').value.trim()
+        };
+
+        const orden = registrarCompra(envio);
+        sessionStorage.setItem('lp_ultima_orden', JSON.stringify(orden));
+        window.location.href = 'confirmacion.html';
+      });
+    }
+
+    // ── Crear campo de formulario ─────────────────────────────
+    function crearCampo(nombre, label, tipo, placeholder) {
+      const mb = document.createElement('div');
+      mb.className = 'mb-3';
+
+      const lbl = document.createElement('label');
+      lbl.htmlFor = `campo-${nombre}`;
+      lbl.className = 'form-label';
+      lbl.textContent = label;
+
+      const inp = document.createElement('input');
+      inp.type = tipo;
+      inp.id = `campo-${nombre}`;
+      inp.name = nombre;
+      inp.className = 'form-control';
+      inp.placeholder = placeholder;
+      inp.autocomplete = 'off';
+
+      const feedback = document.createElement('div');
+      feedback.className = 'invalid-feedback';
+      feedback.id = `feedback-${nombre}`;
+      feedback.textContent = `${label} es requerido.`;
+
+      mb.appendChild(lbl);
+      mb.appendChild(inp);
+      mb.appendChild(feedback);
+      return mb;
+    }
+
+    // ── Validar un campo individual ───────────────────────────
+    function validarCampo(inp) {
+      const nombre = inp.name;
+      const valor = inp.value.trim();
+      let ok = requerido(valor);
+
+      if (ok && nombre === 'telefono') {
+        ok = /^\d{8,9}$/.test(valor);
+        const fb = document.getElementById('feedback-telefono');
+        if (fb) fb.textContent = ok ? '' : 'Ingresa 8 o 9 dígitos (sin espacios ni guiones).';
+      }
+
+      marcar(inp, ok);
+      return ok;
+    }
+
+    // ── Habilitar/deshabilitar botón pagar ────────────────────
+    function actualizarBoton() {
+      const inputs = document.querySelectorAll('#form-envio input');
+      const todosValidos = Array.from(inputs).every(inp => inp.classList.contains('is-valid'));
+      const btn = document.getElementById('btn-pagar');
+      if (btn) btn.disabled = !todosValidos;
+    }
+  </script>
+</body>
+</html>
