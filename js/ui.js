@@ -98,7 +98,7 @@ export function renderNavbar(contenedorId = "navbar") {
 
   const brandHTML = `
     <a class="navbar-brand" href="${brandHref}">
-      <span class="brand-icon">💧</span>
+      <span class="brand-icon"><i class="bi bi-droplet-fill"></i></span>
       Liquid<span class="brand-accent">Pricing</span>
     </a>`;
 
