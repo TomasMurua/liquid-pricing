@@ -37,9 +37,9 @@ export function estrellas(rating) {
   let html = `<span class="estrellas" aria-label="Valoración: ${rating} de 5">`;
   for (let i = 1; i <= MAX; i++) {
     if (i <= llenas) {
-      html += `<span class="star-llena" aria-hidden="true">★</span>`;
+      html += `<i class="bi bi-star-fill star-llena" aria-hidden="true"></i>`;
     } else {
-      html += `<span class="star-vacio" aria-hidden="true">☆</span>`;
+      html += `<i class="bi bi-star star-vacio" aria-hidden="true"></i>`;
     }
   }
   html += `</span>`;

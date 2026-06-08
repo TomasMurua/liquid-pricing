@@ -287,8 +287,10 @@ a:hover {
   text-transform: uppercase;
 }
 .badge-mejor-precio::before {
-  content: "★";
-  font-size: 0.7em;
+  font-family: "bootstrap-icons";
+  content: "\f586";
+  font-size: 0.85em;
+  margin-right: 0.3em;
 }
 
 /* Badge categoría */
@@ -466,8 +468,9 @@ a:hover {
   transition: color var(--lp-transition);
 }
 .reglas-password li::before {
-  font-size: 0.8em;
-  font-weight: 700;
+  font-family: "bootstrap-icons";
+  font-size: 0.85em;
+  margin-right: 0.35em;
 }
 
 .regla-ok {
@@ -475,14 +478,14 @@ a:hover {
   font-weight: 600;
 }
 .regla-ok::before {
-  content: "✔";
+  content: "\f26a";
 }
 
 .regla-pendiente {
   color: var(--lp-muted);
 }
 .regla-pendiente::before {
-  content: "○";
+  content: "\f28a";
 }
 
 
