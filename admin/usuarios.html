@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Usuarios · Liquid Pricing Admin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="../css/estilos.css" rel="stylesheet">
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <main class="lp-main">
+
+    <section class="lp-hero">
+      <div class="container">
+        <h1 class="mb-0">Mantenedor de usuarios</h1>
+        <p class="lead mb-0">Administra roles y elimina cuentas de usuario.</p>
+      </div>
+    </section>
+
+    <section class="lp-section">
+      <div class="container">
+
+        <div id="alerta-ok" class="alert alert-lp-success d-none mb-3" role="alert">
+          <i class="bi bi-check-circle me-2"></i><span id="alerta-ok-texto">Cambio guardado.</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover align-middle">
+            <thead class="table-dark">
+              <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>RUT</th>
+                <th style="width:150px;">Rol</th>
+                <th class="text-end">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-usuarios">
+              <tr>
+                <td colspan="5" class="text-center py-4">
+                  <div class="spinner-border spinner-lp" role="status">
+                    <span class="visually-hidden">Cargando…</span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer-lp text-center py-4 mt-auto">
+    <div class="container small">© 2026 Liquid Pricing · Proyecto académico DSY2202</div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module">
+    import { renderNavbar } from '../js/ui.js';
+    import { getSesion, requiereRol } from '../js/auth.js';
+    import { getUsuarios, guardarUsuario, removeUsuario } from '../js/datos.js';
+
+    requiereRol('admin');
+    renderNavbar();
+
+    const tbody       = document.getElementById('tbody-usuarios');
+    const alertaOk    = document.getElementById('alerta-ok');
+    const alertaTexto = document.getElementById('alerta-ok-texto');
+
+    const sesion = getSesion();
+    const emailAdmin = sesion?.email ?? '';
+
+    // ── Alerta flash ──────────────────────────────────────────────
+    function mostrarAlerta(msg) {
+      alertaTexto.textContent = msg;
+      alertaOk.classList.remove('d-none');
+      clearTimeout(mostrarAlerta._t);
+      mostrarAlerta._t = setTimeout(() => alertaOk.classList.add('d-none'), 3000);
+    }
+
+    // ── Renderizar tabla ──────────────────────────────────────────
+    async function renderTabla() {
+      tbody.innerHTML = '';
+      const usuarios = await getUsuarios();
+
+      if (usuarios.length === 0) {
+        const tr = document.createElement('tr');
+        const td = document.createElement('td');
+        td.colSpan = 5;
+        td.className = 'text-center text-muted py-4';
+        td.textContent = 'No hay usuarios registrados.';
+        tr.appendChild(td);
+        tbody.appendChild(tr);
+        return;
+      }
+
+      usuarios.forEach(u => {
+        const esMiCuenta = u.email === emailAdmin;
+        const tr = document.createElement('tr');
+
+        // Nombre
+        const tdNombre = document.createElement('td');
+        tdNombre.textContent = u.nombre || '—';
+        if (esMiCuenta) {
+          const badge = document.createElement('span');
+          badge.className = 'badge bg-secondary ms-2';
+          badge.textContent = 'Tu cuenta';
+          tdNombre.appendChild(badge);
+        }
+
+        // Email
+        const tdEmail = document.createElement('td');
+        tdEmail.textContent = u.email || '—';
+
+        // RUT
+        const tdRut = document.createElement('td');
+        tdRut.textContent = u.rut || '—';
+
+        // Rol (select)
+        const tdRol = document.createElement('td');
+        const select = document.createElement('select');
+        select.className = 'form-select form-select-sm';
+        select.disabled = esMiCuenta;
+
+        ['cliente', 'admin'].forEach(rol => {
+          const opt = document.createElement('option');
+          opt.value = rol;
+          opt.textContent = rol.charAt(0).toUpperCase() + rol.slice(1);
+          if (u.rol === rol) opt.selected = true;
+          select.appendChild(opt);
+        });
+        tdRol.appendChild(select);
+
+        // Acciones
+        const tdAcciones = document.createElement('td');
+        tdAcciones.className = 'text-end d-flex gap-2 justify-content-end';
+
+        const btnGuardarRol = document.createElement('button');
+        btnGuardarRol.className = 'btn btn-sm btn-outline-primary';
+        btnGuardarRol.innerHTML = '<i class="bi bi-floppy"></i> Guardar rol';
+        btnGuardarRol.disabled = esMiCuenta;
+        btnGuardarRol.addEventListener('click', () => {
+          const nuevoRol = select.value;
+          guardarUsuario({ ...u, rol: nuevoRol });
+          mostrarAlerta(`Rol de ${u.nombre || u.email} actualizado a "${nuevoRol}".`);
+          // Re-render para reflejar estado consistente
+          renderTabla();
+        });
+
+        const btnEliminar = document.createElement('button');
+        btnEliminar.className = 'btn btn-sm btn-outline-danger';
+        btnEliminar.innerHTML = '<i class="bi bi-trash"></i> Eliminar';
+        btnEliminar.disabled = esMiCuenta;
+        btnEliminar.addEventListener('click', () => {
+          if (!confirm(`¿Eliminar la cuenta de "${u.nombre || u.email}"? Esta acción no se puede deshacer.`)) return;
+          removeUsuario(u.email);
+          mostrarAlerta(`Usuario "${u.nombre || u.email}" eliminado.`);
+          renderTabla();
+        });
+
+        tdAcciones.appendChild(btnGuardarRol);
+        tdAcciones.appendChild(btnEliminar);
+
+        tr.appendChild(tdNombre);
+        tr.appendChild(tdEmail);
+        tr.appendChild(tdRut);
+        tr.appendChild(tdRol);
+        tr.appendChild(tdAcciones);
+        tbody.appendChild(tr);
+      });
+    }
+
+    renderTabla();
+  </script>
+</body>
+</html>

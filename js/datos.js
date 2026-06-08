@@ -4,8 +4,9 @@
  * Importar con: import { getProductos, getProducto, ... } from './js/datos.js'
  */
 
-const LS_PRODUCTOS = "lp_productos";
-const LS_USUARIOS  = "lp_usuarios";
+const LS_PRODUCTOS    = "lp_productos";
+const LS_USUARIOS     = "lp_usuarios";
+const LS_USUARIOS_DEL = "lp_usuarios_del";
 
 /**
  * Retorna el arreglo completo de productos.
@@ -75,10 +76,20 @@ export async function getUsuarios() {
     }
   }
 
+  // Leer lista negra de emails eliminados
+  let eliminados = [];
+  try {
+    eliminados = JSON.parse(localStorage.getItem(LS_USUARIOS_DEL) || "[]");
+  } catch (_) {}
+  const emailsEliminados = new Set(eliminados);
+
   // Merge: seed + registrados, sin duplicar emails (registrados tienen precedencia)
   const emailsRegistrados = new Set(registrados.map(u => u.email));
   const seedFiltrado = seed.filter(u => !emailsRegistrados.has(u.email));
-  return [...seedFiltrado, ...registrados];
+  const todos = [...seedFiltrado, ...registrados];
+
+  // Excluir usuarios en la lista negra
+  return todos.filter(u => !emailsEliminados.has(u.email));
 }
 
 /**
@@ -106,6 +117,29 @@ export function guardarUsuario(u) {
   }
 
   localStorage.setItem(LS_USUARIOS, JSON.stringify(lista));
+}
+
+/**
+ * Marca un usuario como eliminado persistiendo su email en la lista negra.
+ * La exclusión se aplica en getUsuarios() al combinar seed + registrados.
+ * @param {string} email
+ */
+export function removeUsuario(email) {
+  let lista = [];
+  try {
+    lista = JSON.parse(localStorage.getItem(LS_USUARIOS_DEL) || "[]");
+  } catch (_) {}
+  if (!lista.includes(email)) {
+    lista.push(email);
+    localStorage.setItem(LS_USUARIOS_DEL, JSON.stringify(lista));
+  }
+  // También eliminar de lp_usuarios si estaba registrado ahí
+  let registrados = [];
+  try {
+    registrados = JSON.parse(localStorage.getItem(LS_USUARIOS) || "[]");
+  } catch (_) {}
+  const nuevos = registrados.filter(u => u.email !== email);
+  localStorage.setItem(LS_USUARIOS, JSON.stringify(nuevos));
 }
 
 /**

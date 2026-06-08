@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inventario · Liquid Pricing Admin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="../css/estilos.css" rel="stylesheet">
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <main class="lp-main">
+
+    <section class="lp-hero">
+      <div class="container">
+        <h1 class="mb-0">Inventario</h1>
+        <p class="lead mb-0">Ajusta el stock disponible por producto.</p>
+      </div>
+    </section>
+
+    <section class="lp-section">
+      <div class="container">
+
+        <div id="alerta-guardado" class="alert alert-lp-success d-none mb-3" role="alert">
+          <i class="bi bi-check-circle me-2"></i>Cambios guardados correctamente.
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover align-middle">
+            <thead class="table-dark">
+              <tr>
+                <th>Producto</th>
+                <th>Categoría</th>
+                <th style="width:160px;">Stock actual</th>
+                <th>Estado</th>
+                <th class="text-end">Acción</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-inventario">
+              <tr>
+                <td colspan="5" class="text-center py-4">
+                  <div class="spinner-border spinner-lp" role="status">
+                    <span class="visually-hidden">Cargando…</span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="text-end mt-3">
+          <button class="btn btn-primary" id="btn-guardar-todo">
+            <i class="bi bi-floppy me-1"></i>Guardar todos los cambios
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer-lp text-center py-4 mt-auto">
+    <div class="container small">© 2026 Liquid Pricing · Proyecto académico DSY2202</div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module">
+    import { renderNavbar } from '../js/ui.js';
+    import { requiereRol } from '../js/auth.js';
+    import { getProductos, setProductos } from '../js/datos.js';
+
+    requiereRol('admin');
+    renderNavbar();
+
+    const tbody         = document.getElementById('tbody-inventario');
+    const btnGuardarTodo = document.getElementById('btn-guardar-todo');
+    const alertaGuardado = document.getElementById('alerta-guardado');
+
+    let productos = [];
+
+    // ── Helpers ───────────────────────────────────────────────────
+    function badgeEstado(stock) {
+      if (stock > 0) {
+        return '<span class="badge bg-success">Disponible</span>';
+      }
+      return '<span class="badge bg-danger">Agotado</span>';
+    }
+
+    // ── Renderizar tabla ──────────────────────────────────────────
+    function renderTabla() {
+      tbody.innerHTML = '';
+
+      if (productos.length === 0) {
+        const tr = document.createElement('tr');
+        const td = document.createElement('td');
+        td.colSpan = 5;
+        td.className = 'text-center text-muted py-4';
+        td.textContent = 'No hay productos registrados.';
+        tr.appendChild(td);
+        tbody.appendChild(tr);
+        return;
+      }
+
+      productos.forEach((p, idx) => {
+        const stockActual = (p.stock !== undefined && p.stock !== null) ? Number(p.stock) : 10;
+
+        const tr = document.createElement('tr');
+
+        // Producto
+        const tdNombre = document.createElement('td');
+        tdNombre.textContent = p.nombre;
+
+        // Categoría
+        const tdCat = document.createElement('td');
+        tdCat.textContent = p.categoria || '—';
+
+        // Stock (input editable)
+        const tdStock = document.createElement('td');
+        const input = document.createElement('input');
+        input.type = 'number';
+        input.min = '0';
+        input.value = stockActual;
+        input.className = 'form-control form-control-sm';
+        input.dataset.idx = idx;
+        input.style.width = '100px';
+        tdStock.appendChild(input);
+
+        // Estado (badge reactivo)
+        const tdEstado = document.createElement('td');
+        tdEstado.innerHTML = badgeEstado(stockActual);
+
+        // Acción individual
+        const tdAccion = document.createElement('td');
+        tdAccion.className = 'text-end';
+        const btnGuardar = document.createElement('button');
+        btnGuardar.className = 'btn btn-sm btn-outline-primary';
+        btnGuardar.innerHTML = '<i class="bi bi-floppy"></i> Guardar';
+        btnGuardar.addEventListener('click', () => {
+          const nuevoStock = Number(input.value) || 0;
+          productos[idx] = { ...productos[idx], stock: nuevoStock };
+          setProductos(productos);
+          tdEstado.innerHTML = badgeEstado(nuevoStock);
+          mostrarAlerta();
+        });
+        tdAccion.appendChild(btnGuardar);
+
+        // Actualizar badge en tiempo real al cambiar input
+        input.addEventListener('input', () => {
+          const v = Number(input.value) || 0;
+          tdEstado.innerHTML = badgeEstado(v);
+        });
+
+        tr.appendChild(tdNombre);
+        tr.appendChild(tdCat);
+        tr.appendChild(tdStock);
+        tr.appendChild(tdEstado);
+        tr.appendChild(tdAccion);
+        tbody.appendChild(tr);
+      });
+    }
+
+    function mostrarAlerta() {
+      alertaGuardado.classList.remove('d-none');
+      clearTimeout(mostrarAlerta._t);
+      mostrarAlerta._t = setTimeout(() => alertaGuardado.classList.add('d-none'), 3000);
+    }
+
+    // ── Guardar todo ──────────────────────────────────────────────
+    btnGuardarTodo.addEventListener('click', () => {
+      tbody.querySelectorAll('input[data-idx]').forEach(input => {
+        const idx = Number(input.dataset.idx);
+        if (productos[idx]) {
+          productos[idx] = { ...productos[idx], stock: Number(input.value) || 0 };
+        }
+      });
+      setProductos(productos);
+      renderTabla();
+      mostrarAlerta();
+    });
+
+    // ── Inicio ────────────────────────────────────────────────────
+    async function init() {
+      productos = await getProductos();
+      renderTabla();
+    }
+
+    init();
+  </script>
+</body>
+</html>

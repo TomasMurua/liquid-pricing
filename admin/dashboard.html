@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard · Liquid Pricing Admin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="../css/estilos.css" rel="stylesheet">
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <main class="lp-main">
+
+    <!-- Hero / encabezado -->
+    <section class="lp-hero">
+      <div class="container">
+        <h1 id="titulo-panel">Panel de administración</h1>
+        <p class="lead mb-0">Bienvenido/a, <span id="admin-nombre" class="fw-bold hero-accent">—</span></p>
+      </div>
+    </section>
+
+    <!-- Tarjetas de resumen -->
+    <section class="lp-section">
+      <div class="container">
+        <div class="lp-section-header mb-4">
+          <h2>Resumen del sitio</h2>
+        </div>
+        <div class="row g-3" id="cards-resumen">
+          <!-- Se generan por JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Accesos rápidos -->
+    <section class="lp-section-alt">
+      <div class="container">
+        <div class="lp-section-header mb-4">
+          <h2>Accesos rápidos</h2>
+        </div>
+        <div class="d-flex flex-wrap gap-3">
+          <a href="productos.html" class="btn btn-primary">
+            <i class="bi bi-box-seam me-2"></i>Gestionar productos
+          </a>
+          <a href="inventario.html" class="btn btn-outline-primary">
+            <i class="bi bi-archive me-2"></i>Ver inventario
+          </a>
+          <a href="usuarios.html" class="btn btn-outline-primary">
+            <i class="bi bi-people me-2"></i>Gestionar usuarios
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer-lp text-center py-4 mt-auto">
+    <div class="container small">© 2026 Liquid Pricing · Proyecto académico DSY2202</div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module">
+    import { renderNavbar } from '../js/ui.js';
+    import { getSesion, requiereRol } from '../js/auth.js';
+    import { getProductos, getUsuarios } from '../js/datos.js';
+
+    requiereRol('admin');
+    renderNavbar();
+
+    // Saludo personalizado
+    const sesion = getSesion();
+    document.getElementById('admin-nombre').textContent = sesion?.nombre ?? 'Administrador';
+
+    // Contar órdenes de lp_compras
+    function contarOrdenes() {
+      try {
+        const raw = localStorage.getItem('lp_compras');
+        if (!raw) return 0;
+        const arr = JSON.parse(raw);
+        return Array.isArray(arr) ? arr.length : 0;
+      } catch (_) {
+        return 0;
+      }
+    }
+
+    async function renderCards() {
+      const [productos, usuarios] = await Promise.all([getProductos(), getUsuarios()]);
+      const ordenes = contarOrdenes();
+
+      const datos = [
+        {
+          icono: 'bi-box-seam',
+          color: 'text-lp-primary',
+          valor: productos.length,
+          etiqueta: 'Productos',
+          link: 'productos.html',
+          linkTexto: 'Gestionar',
+        },
+        {
+          icono: 'bi-people',
+          color: 'text-lp-accent',
+          valor: usuarios.length,
+          etiqueta: 'Usuarios registrados',
+          link: 'usuarios.html',
+          linkTexto: 'Ver usuarios',
+        },
+        {
+          icono: 'bi-bag-check',
+          color: 'text-lp-success',
+          valor: ordenes,
+          etiqueta: 'Órdenes realizadas',
+          link: '#',
+          linkTexto: '',
+        },
+      ];
+
+      const contenedor = document.getElementById('cards-resumen');
+      contenedor.innerHTML = '';
+      datos.forEach(d => {
+        const col = document.createElement('div');
+        col.className = 'col-12 col-sm-6 col-lg-4';
+        col.innerHTML = `
+          <div class="lp-card h-100">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <i class="bi ${d.icono} fs-2 ${d.color}"></i>
+              <div>
+                <div class="fs-2 fw-bold lp-heading">${d.valor}</div>
+                <div class="text-lp-muted small">${d.etiqueta}</div>
+              </div>
+            </div>
+            ${d.link && d.linkTexto
+              ? `<a href="${d.link}" class="btn btn-sm btn-outline-primary mt-auto">${d.linkTexto}</a>`
+              : ''}
+          </div>`;
+        contenedor.appendChild(col);
+      });
+    }
+
+    renderCards();
+  </script>
+</body>
+</html>
