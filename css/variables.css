@@ -1,0 +1,84 @@
+/* ============================================================
+   variables.css — Design System de Liquid Pricing
+   Tokens globales: paleta, espaciado, tipografía, sombras
+   ============================================================ */
+
+:root {
+
+  /* ----------------------------------------------------------
+     Paleta de marca
+     Primary: azul pizarra profundo (confianza / fintech)
+     Accent:  cian-teal "liquid" (frescura / diferenciador)
+     Success: verde esmeralda para el mejor precio
+     ---------------------------------------------------------- */
+  --lp-primary:       #1A3A5C;   /* azul marino profundo */
+  --lp-primary-dark:  #112845;   /* hover / bordes activos */
+  --lp-primary-light: #254E7A;   /* variante clara interna */
+
+  --lp-accent:        #00C2B8;   /* teal "liquid" */
+  --lp-accent-dark:   #009E95;   /* hover del accent */
+  --lp-accent-light:  #E0FAF8;   /* fondo suave de badges teal */
+
+  --lp-success:       #1DB87E;   /* verde mejor precio */
+  --lp-success-dark:  #178C60;   /* hover */
+  --lp-success-light: #D6F5E9;   /* fondo badge mejor precio */
+
+  --lp-warning:       #F5A623;   /* advertencia / estrellas */
+  --lp-danger:        #E03A3A;   /* error / inválido */
+
+  /* ----------------------------------------------------------
+     Neutros
+     ---------------------------------------------------------- */
+  --lp-bg:            #F4F7FA;   /* fondo general de página */
+  --lp-surface:       #FFFFFF;   /* tarjetas, modals, paneles */
+  --lp-surface-alt:   #EEF2F7;   /* fondo alterno (filas tabla, etc.) */
+
+  --lp-text:          #1C2B3A;   /* texto principal */
+  --lp-muted:         #6B7A8D;   /* texto secundario / placeholders */
+  --lp-border:        #D8E0EA;   /* bordes, divisores */
+  --lp-border-strong: #B0BECC;   /* bordes enfatizados */
+
+  /* ----------------------------------------------------------
+     Espaciado (escala 4px)
+     ---------------------------------------------------------- */
+  --lp-space-1:  0.25rem;   /*  4px */
+  --lp-space-2:  0.5rem;    /*  8px */
+  --lp-space-3:  1rem;      /* 16px */
+  --lp-space-4:  1.5rem;    /* 24px */
+  --lp-space-5:  2rem;      /* 32px */
+  --lp-space-6:  3rem;      /* 48px */
+
+  /* ----------------------------------------------------------
+     Bordes redondeados
+     ---------------------------------------------------------- */
+  --lp-radius:    0.5rem;    /*  8px — tarjetas, inputs */
+  --lp-radius-lg: 1rem;      /* 16px — modals, hero */
+  --lp-radius-sm: 0.25rem;   /*  4px — badges, tags */
+  --lp-radius-pill: 999px;   /* pill — botones CTA */
+
+  /* ----------------------------------------------------------
+     Sombras
+     ---------------------------------------------------------- */
+  --lp-shadow-sm: 0 1px 3px rgba(26, 58, 92, 0.08);
+  --lp-shadow-md: 0 4px 12px rgba(26, 58, 92, 0.12);
+  --lp-shadow-lg: 0 8px 28px rgba(26, 58, 92, 0.16);
+
+  /* ----------------------------------------------------------
+     Tipografía
+     ---------------------------------------------------------- */
+  --lp-font-head: 'Sora', 'Poppins', sans-serif;
+  --lp-font-body: 'Inter', system-ui, sans-serif;
+
+  --lp-text-xs:   0.75rem;
+  --lp-text-sm:   0.875rem;
+  --lp-text-base: 1rem;
+  --lp-text-lg:   1.125rem;
+  --lp-text-xl:   1.25rem;
+  --lp-text-2xl:  1.5rem;
+  --lp-text-3xl:  1.875rem;
+
+  /* ----------------------------------------------------------
+     Transiciones
+     ---------------------------------------------------------- */
+  --lp-transition: 0.18s ease;
+}
