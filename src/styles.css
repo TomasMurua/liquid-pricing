@@ -1,0 +1,4 @@
+/* Estilos globales de Liquid Pricing.
+   La capa de marca (tokens + estilos propios) se aplica sobre Bootstrap,
+   que se carga antes desde angular.json. */
+@import './styles/estilos.css';

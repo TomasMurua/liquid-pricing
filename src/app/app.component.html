@@ -1,0 +1,61 @@
+<nav class="navbar navbar-lp navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" [routerLink]="brandLink()">
+      <span class="brand-icon"><i class="bi bi-droplet-fill"></i></span>
+      Liquid<span class="brand-accent">Pricing</span>
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navMenu"
+      aria-controls="navMenu"
+      aria-expanded="false"
+      aria-label="Abrir menú"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+        <!-- Invitado -->
+        <ng-container *ngIf="!auth.usuarioActual()">
+          <li class="nav-item"><a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Catálogo</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/login" routerLinkActive="active">Ingresar</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/registro" routerLinkActive="active">Registrarse</a></li>
+        </ng-container>
+
+        <!-- Cliente -->
+        <ng-container *ngIf="auth.usuarioActual() && !auth.esAdmin()">
+          <li class="nav-item"><a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Catálogo</a></li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/carrito" routerLinkActive="active">
+              Carrito
+              <span class="badge-carrito ms-1" *ngIf="carrito.cantidad() > 0">{{ carrito.cantidad() }}</span>
+            </a>
+          </li>
+          <li class="nav-item"><a class="nav-link" routerLink="/mis-compras" routerLinkActive="active">Mis compras</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/perfil" routerLinkActive="active">Perfil</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-salir" href="#" (click)="salir($event)">Salir</a></li>
+        </ng-container>
+
+        <!-- Admin -->
+        <ng-container *ngIf="auth.esAdmin()">
+          <li class="nav-item"><a class="nav-link" routerLink="/admin/productos" routerLinkActive="active">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/admin/inventario" routerLinkActive="active">Inventario</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/admin/usuarios" routerLinkActive="active">Usuarios</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-salir" href="#" (click)="salir($event)">Salir</a></li>
+        </ng-container>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main class="container py-4">
+  <router-outlet />
+</main>
+
+<footer class="text-center text-muted py-4 small">
+  © 2026 Liquid Pricing · Comparador de precios de retailers chilenos
+</footer>

@@ -1,50 +1,59 @@
-# Liquid Pricing
+# LiquidPricingNg
 
-E-commerce comparador de precios de retailers chilenos. Proyecto de la asignatura DSY2202 - Desarrollo Full Stack II, DUOC UC.
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.27.
 
-## Descripción
+## Development server
 
-Liquid Pricing permite comparar precios de un mismo producto entre distintos retailers (Falabella, Ripley, Paris, PC Factory, entre otros), agregar productos al carrito y completar una compra simulada. Los datos provienen de búsquedas reales obtenidas con SerpApi y se almacenan como JSON estático. La API key se usa solo como variable de entorno local y no se incluye en el repositorio.
-
-## Stack
-
-- HTML5, CSS3
-- Bootstrap 5.3
-- JavaScript vanilla (ES6)
-- Sin backend (servidor de archivos estáticos en local)
-
-## Cómo correr el sitio
+To start a local development server, run:
 
 ```bash
-cd proyecto
-python3 -m http.server 5500
+ng serve
 ```
 
-Abrir http://localhost:5500 en el navegador.
+Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Regenerar datos desde SerpApi
+## Code scaffolding
+
+Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
 ```bash
-SERPAPI_KEY=tu_clave_aqui node scripts/harvest.js
+ng generate component component-name
 ```
 
-## Estructura de carpetas
+For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
-```
-proyecto/
-├── index.html
-├── admin/
-├── assets/
-├── css/
-├── data/
-├── img/
-├── js/
-└── scripts/
+```bash
+ng generate --help
 ```
 
-## Roles y credenciales de prueba
+## Building
 
-| Rol     | Email             | Contraseña  |
-|---------|-------------------|-------------|
-| Admin   | admin@liquid.cl   | Admin123!   |
-| Cliente | cliente@liquid.cl | Cliente123! |
+To build the project run:
+
+```bash
+ng build
+```
+
+This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+
+## Running unit tests
+
+To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+
+```bash
+ng test
+```
+
+## Running end-to-end tests
+
+For end-to-end (e2e) testing, run:
+
+```bash
+ng e2e
+```
+
+Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+
+## Additional Resources
+
+For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

@@ -1,0 +1,11 @@
+/* Estilos específicos del shell (navbar/outlet).
+   La mayoría del diseño vive en los estilos globales (styles.css). */
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1 0 auto;
+}
