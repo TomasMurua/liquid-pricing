@@ -1,59 +1,80 @@
-# LiquidPricingNg
+# Liquid Pricing
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.27.
+Comparador de precios de retailers chilenos (e-commerce) desarrollado en **Angular 19**.
+Proyecto de la asignatura **Desarrollo Full Stack II (DSY2202)** — Duoc UC.
 
-## Development server
+Permite comparar el precio de un producto entre varias tiendas (Falabella, Paris, Ripley,
+PC Factory, MercadoLibre…), agregar al carrito la mejor oferta y simular la compra. Incluye
+dos roles: **cliente** y **administrador** (mantenedores de productos, usuarios e inventario).
 
-To start a local development server, run:
+## Arquitectura de datos (una base, dos modos)
 
-```bash
-ng serve
-```
+Los servicios de dominio consultan la fuente según `environment.useBackend`:
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+| Modo | `useBackend` | Fuente de datos | Build |
+|------|-------------|-----------------|-------|
+| Semana 6 (estático) | `false` | Arreglos semilla en memoria + `localStorage` | `ng serve` / dev |
+| Semana 8 (backend) | `true`  | **Firebase Realtime Database** vía `HttpClient` (GET/POST/PUT/DELETE) | build de producción |
 
-## Code scaffolding
+La sesión y el carrito se guardan en `localStorage`. En modo backend, los mantenedores de
+administración ejecutan las operaciones REST sobre Firebase.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Stack
 
-```bash
-ng generate component component-name
-```
+Angular 19 (standalone), TypeScript, RxJS, Bootstrap 5.3 + Bootstrap Icons, Firebase Realtime
+Database, Jasmine/Karma (pruebas), Compodoc (documentación), Docker + Nginx, Vercel (despliegue).
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+## Cómo ejecutar
 
 ```bash
-ng build
+npm install
+
+# Desarrollo (modo estático, Semana 6)
+npm start                    # http://localhost:4200
+
+# Build de producción (modo Firebase, Semana 8)
+npm run build
+
+# Pruebas unitarias (Jasmine/Karma)
+npm test                     # abre Chrome
+npm run test:ci              # headless
+
+# Documentación (Compodoc)
+npm run docs                 # genera ./documentation
+
+# Poblar Firebase con los datos semilla
+node scripts/seed-firebase.mjs
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## Docker
 
 ```bash
-ng test
+docker build -t liquid-pricing .
+docker run -p 8080:80 liquid-pricing   # http://localhost:8080
 ```
 
-## Running end-to-end tests
+El `Dockerfile` construye la app y la sirve con Nginx (con fallback SPA a `index.html`).
+El despliegue en la nube usa `Dockerfile.vercel` sobre Vercel.
 
-For end-to-end (e2e) testing, run:
+## Credenciales de demo
 
-```bash
-ng e2e
+| Rol | Correo | Contraseña |
+|-----|--------|-----------|
+| Administrador | `admin@liquid.cl` | `Admin123!` |
+| Cliente | `cliente@liquid.cl` | `Cliente123!` |
+
+## Estructura
+
 ```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+src/app/
+  models/        interfaces (Producto, Usuario, Compra…)
+  data/          datos semilla
+  core/
+    services/    Auth, Producto, Usuario, Carrito, Compra
+    validators/  RUT chileno, reglas de contraseña
+    guards/      sesión y rol
+    utils/       formato CLP, mejor precio
+  shared/        tarjeta de producto (@Input/@Output)
+  features/      auth · catalogo · compra · admin
+scripts/         seed de Firebase
+```
