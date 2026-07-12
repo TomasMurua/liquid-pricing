@@ -44,3 +44,6 @@ Thumbs.db
 # Documentación generada por Compodoc
 /documentation
 .vercel
+
+# Variables de entorno locales (contienen la SERPAPI_KEY — NUNCA commitear)
+.env

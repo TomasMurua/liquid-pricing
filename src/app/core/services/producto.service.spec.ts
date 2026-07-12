@@ -3,6 +3,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { ProductoService } from './producto.service';
 import { environment } from '../../../environments/environment';
+import { PRODUCTOS_SEED } from '../../data/productos.seed';
 
 describe('ProductoService', () => {
   let service: ProductoService;
@@ -24,7 +25,7 @@ describe('ProductoService', () => {
   it('en modo estático devuelve los productos semilla', (done) => {
     environment.useBackend = false;
     service.listar().subscribe((ps) => {
-      expect(ps.length).toBe(12);
+      expect(ps.length).toBe(PRODUCTOS_SEED.length);
       done();
     });
   });
