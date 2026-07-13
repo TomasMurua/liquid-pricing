@@ -1,0 +1,238 @@
+/* ============================================================
+   mejoras.css — Capa de UI que dramatiza la comparación de
+   precios (la firma de Liquid Pricing). Se carga después de
+   estilos.css y reutiliza los tokens del sistema.
+   ============================================================ */
+
+/* ---------- Tarjeta de producto ---------- */
+.lp-card--producto {
+  padding: 0;
+  overflow: hidden;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+.lp-card--producto:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--lp-shadow-lg);
+  border-color: var(--lp-accent);
+}
+.lp-card__media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: var(--lp-surface-alt);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.lp-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 1rem;
+  transition: transform 0.3s ease;
+}
+.lp-card--producto:hover .lp-card__media img {
+  transform: scale(1.04);
+}
+.lp-chip--cat {
+  position: absolute;
+  top: 0.6rem;
+  left: 0.6rem;
+  background: rgba(26, 58, 92, 0.85);
+  color: #fff;
+  font-size: var(--lp-text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.25em 0.6em;
+  border-radius: var(--lp-radius-pill);
+  backdrop-filter: blur(2px);
+}
+.lp-card__body {
+  padding: var(--lp-space-4);
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+.lp-card--producto .lp-card-title {
+  font-size: var(--lp-text-base);
+  line-height: 1.3;
+  margin: 0 0 0.4rem;
+  min-height: 2.6em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Bloque de precio: el héroe de la tarjeta */
+.lp-precio {
+  margin-top: auto;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  column-gap: 0.4rem;
+}
+.lp-precio__label {
+  width: 100%;
+  font-size: var(--lp-text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--lp-muted);
+}
+.lp-precio__valor {
+  font-family: var(--lp-font-head);
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: var(--lp-success-dark);
+  line-height: 1.05;
+}
+.lp-precio__tienda {
+  font-size: var(--lp-text-sm);
+  color: var(--lp-muted);
+}
+.lp-metrica {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin: 0.6rem 0 0;
+}
+.lp-ahorro {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: var(--lp-success-light);
+  color: var(--lp-success-dark);
+  font-weight: 700;
+  font-size: var(--lp-text-xs);
+  padding: 0.3em 0.65em;
+  border-radius: var(--lp-radius-pill);
+}
+.lp-tiendas {
+  color: var(--lp-muted);
+  font-size: var(--lp-text-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  white-space: nowrap;
+}
+.lp-card__acciones {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+}
+.lp-card__acciones .btn {
+  flex: 1;
+}
+
+/* ---------- Hero con buscador ---------- */
+.lp-hero__stats {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 1.35rem;
+  flex-wrap: wrap;
+}
+.lp-hero__stat b {
+  font-family: var(--lp-font-head);
+  font-size: 1.5rem;
+  display: block;
+  color: var(--lp-accent);
+  line-height: 1.1;
+}
+.lp-hero__stat span {
+  font-size: var(--lp-text-sm);
+  color: rgba(255, 255, 255, 0.75);
+}
+.lp-hero__buscador {
+  max-width: 620px;
+  margin: 1.5rem auto 0;
+}
+.lp-hero__buscador .input-group {
+  box-shadow: var(--lp-shadow-lg);
+  border-radius: var(--lp-radius-pill);
+  overflow: hidden;
+}
+.lp-hero__buscador .form-control,
+.lp-hero__buscador .input-group-text {
+  border: none;
+  padding: 0.85rem 1rem;
+  font-size: 1.05rem;
+}
+.lp-hero__buscador .input-group-text {
+  background: #fff;
+  color: var(--lp-muted);
+}
+
+/* ---------- Detalle: callout de ahorro + barra "liquid" ---------- */
+.lp-ahorro-callout {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: linear-gradient(90deg, var(--lp-success-light), rgba(214, 245, 233, 0));
+  border-left: 4px solid var(--lp-success);
+  border-radius: var(--lp-radius);
+  padding: 0.85rem 1.1rem;
+  color: var(--lp-success-dark);
+  font-weight: 600;
+}
+.lp-ahorro-callout i {
+  font-size: 1.35rem;
+}
+
+/* Barra "liquid": posiciona cada tienda dentro del rango de precios */
+.lp-gauge {
+  margin: 0.5rem 0 1.5rem;
+}
+.lp-gauge__track {
+  position: relative;
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--lp-success-light), var(--lp-accent-light), #fdeccd);
+}
+.lp-gauge__dot {
+  position: absolute;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--lp-border-strong);
+  border: 2px solid #fff;
+  box-shadow: var(--lp-shadow-sm);
+}
+.lp-gauge__dot.mejor {
+  background: var(--lp-success);
+  width: 18px;
+  height: 18px;
+  z-index: 2;
+}
+.lp-gauge__labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--lp-text-xs);
+  color: var(--lp-muted);
+  margin-top: 0.6rem;
+}
+.lp-gauge__labels .max {
+  text-align: right;
+}
+.lp-delta {
+  color: var(--lp-muted);
+  font-size: var(--lp-text-xs);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lp-card--producto,
+  .lp-card__media img {
+    transition: none !important;
+  }
+  .lp-card--producto:hover {
+    transform: none;
+  }
+  .lp-card--producto:hover .lp-card__media img {
+    transform: none;
+  }
+}

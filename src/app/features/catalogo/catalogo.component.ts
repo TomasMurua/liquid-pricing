@@ -6,58 +6,63 @@ import { ProductoCardComponent } from '../../shared/producto-card.component';
 import { ProductoService } from '../../core/services/producto.service';
 import { CarritoService } from '../../core/services/carrito.service';
 import { AuthService } from '../../core/services/auth.service';
-import { formatoCLP, mejorPrecio } from '../../core/utils/formato';
 import { Producto, Oferta } from '../../models/producto.model';
 
 /**
- * Vista principal del catálogo: carga los productos, permite filtrarlos por
- * nombre y categoría, y los muestra en una grilla de tarjetas. Agregar al
- * carrito requiere una sesión de cliente; en caso contrario redirige a login.
+ * Vista principal del catálogo: hero con buscador, estadísticas del catálogo y
+ * una grilla de tarjetas filtrable por nombre y categoría. Agregar al carrito
+ * requiere una sesión de cliente; en caso contrario redirige a login.
  */
 @Component({
   selector: 'app-catalogo',
   standalone: true,
   imports: [CommonModule, FormsModule, ProductoCardComponent],
   template: `
-    <section class="lp-hero hero-accent text-center py-5 mb-4">
+    <section class="lp-hero lp-hero--buscador text-center mb-4">
       <div class="container">
-        <h1 class="display-5 fw-bold">Compara precios y ahorra</h1>
-        <p class="lead mb-0">
-          Encuentra el mejor precio entre los principales retailers de Chile.
-        </p>
-      </div>
-    </section>
+        <h1 class="display-5 fw-bold">Compara precios y <span class="hero-accent">ahorra</span></h1>
+        <p class="lead mb-0">El mejor precio entre los principales retailers de Chile.</p>
 
-    <div class="container pb-5">
-      <div class="row g-3 mb-4">
-        <div class="col-12 col-md-7">
-          <label class="form-label" for="busqueda">Buscar producto</label>
-          <div class="input-group">
+        <div class="lp-hero__buscador">
+          <div class="input-group input-group-lg">
             <span class="input-group-text"><i class="bi bi-search"></i></span>
             <input
-              id="busqueda"
               type="text"
               class="form-control"
-              placeholder="Ej: notebook, smartphone…"
+              placeholder="Busca un notebook, smartphone, audífonos…"
+              aria-label="Buscar producto"
               [(ngModel)]="busqueda"
             />
           </div>
         </div>
-        <div class="col-12 col-md-5">
-          <label class="form-label" for="categoria">Categoría</label>
-          <select id="categoria" class="form-select" [(ngModel)]="categoria">
-            <option value="todas">Todas las categorías</option>
+
+        <div class="lp-hero__stats">
+          <div class="lp-hero__stat"><b>{{ productos.length }}</b><span>productos</span></div>
+          <div class="lp-hero__stat"><b>{{ totalTiendas }}</b><span>ofertas comparadas</span></div>
+          <div class="lp-hero__stat"><b>{{ categorias.length }}</b><span>categorías</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container pb-5">
+      <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+        <p class="text-muted mb-0">
+          {{ productosFiltrados.length }}
+          {{ productosFiltrados.length === 1 ? 'resultado' : 'resultados' }}
+        </p>
+        <div class="d-flex align-items-center gap-2">
+          <label class="form-label mb-0 text-muted small" for="categoria">Categoría</label>
+          <select id="categoria" class="form-select form-select-sm w-auto" [(ngModel)]="categoria">
+            <option value="todas">Todas</option>
             <option *ngFor="let c of categorias" [value]="c">{{ c }}</option>
           </select>
         </div>
       </div>
 
-      <p class="text-muted">
-        {{ productosFiltrados.length }}
-        {{ productosFiltrados.length === 1 ? 'resultado' : 'resultados' }}
-      </p>
-
-      <div *ngIf="productosFiltrados.length > 0; else vacio" class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+      <div
+        *ngIf="productosFiltrados.length > 0; else vacio"
+        class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4"
+      >
         <app-producto-card
           *ngFor="let p of productosFiltrados"
           [producto]="p"
@@ -96,9 +101,6 @@ export class CatalogoComponent implements OnInit {
   categoria = 'todas';
   mostrarToast = false;
 
-  readonly formatoCLP = formatoCLP;
-  readonly mejorPrecio = mejorPrecio;
-
   ngOnInit(): void {
     this.productoService.listar().subscribe((ps) => (this.productos = ps));
   }
@@ -106,6 +108,11 @@ export class CatalogoComponent implements OnInit {
   /** Categorías únicas presentes en el catálogo, ordenadas alfabéticamente. */
   get categorias(): string[] {
     return Array.from(new Set(this.productos.map((p) => p.categoria))).sort();
+  }
+
+  /** Total de ofertas (tiendas) sumadas en todo el catálogo. */
+  get totalTiendas(): number {
+    return this.productos.reduce((acc, p) => acc + p.ofertas.length, 0);
   }
 
   /** Productos que cumplen los filtros de nombre (insensible a mayúsculas) y categoría. */
