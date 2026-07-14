@@ -22,11 +22,11 @@ if (!KEY) {
 }
 
 const CATEGORIAS = [
-  { q: 'notebook', cat: 'notebook' },
-  { q: 'smartphone', cat: 'smartphone' },
-  { q: 'audifonos bluetooth', cat: 'audífonos' },
-  { q: 'smartwatch', cat: 'smartwatch' },
-  { q: 'monitor gamer', cat: 'monitor' },
+  { cat: 'notebook', queries: ['notebook', 'notebook gamer'] },
+  { cat: 'smartphone', queries: ['celular', 'smartphone', 'iphone'] },
+  { cat: 'audífonos', queries: ['audifonos', 'audifonos bluetooth', 'audifonos inalambricos'] },
+  { cat: 'smartwatch', queries: ['smartwatch', 'reloj inteligente', 'apple watch'] },
+  { cat: 'monitor', queries: ['monitor', 'monitor gamer', 'monitor pc'] },
 ];
 const POR_CATEGORIA = 5;
 
@@ -44,19 +44,32 @@ const num = (x) => (typeof x === 'number' ? x : Number(String(x ?? '').replace(/
 const envioDe = (store) =>
   (store.details_and_offers || []).find((x) => /entrega|env[ií]o|gratis|despacho/i.test(x)) || 'Consultar';
 
+/** Busca en google_shopping probando varias frases y reintentando ante "sin resultados". */
+async function shoppingConReintento(queries) {
+  for (const q of queries) {
+    for (let intento = 0; intento < 3; intento++) {
+      try {
+        const d = await serp({ engine: 'google_shopping', q, gl: 'cl', hl: 'es', num: '15' });
+        const r = (d.shopping_results || []).filter((i) => i.thumbnail && (i.extracted_price || i.price));
+        if (r.length) return r;
+      } catch {
+        /* reintenta con la siguiente frase o intento */
+      }
+    }
+  }
+  return [];
+}
+
 const productos = [];
 let id = 1;
 
-for (const { q, cat } of CATEGORIAS) {
-  const shopping = await serp({ engine: 'google_shopping', q, gl: 'cl', hl: 'es', num: '15' });
-  const items = (shopping.shopping_results || [])
-    .filter((i) => i.thumbnail && (i.extracted_price || i.price) && i.immersive_product_page_token)
-    .slice(0, POR_CATEGORIA);
+for (const { cat, queries } of CATEGORIAS) {
+  const items = (await shoppingConReintento(queries)).slice(0, POR_CATEGORIA);
 
   for (const item of items) {
     let ofertas = [];
     let descripcion = '';
-    try {
+    if (item.immersive_product_page_token) try {
       const imm = await serp({
         engine: 'google_immersive_product',
         page_token: item.immersive_product_page_token,

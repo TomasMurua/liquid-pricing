@@ -7,18 +7,30 @@ import { Producto } from '../models/producto.model';
 export const PRODUCTOS_SEED: Producto[] = [
   {
     "id": 1,
-    "nombre": "Apple Macbook Neo 13\" chip A18",
+    "nombre": "Apple Macbook Neo Ram",
     "categoria": "notebook",
-    "imagen": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQp-mCLit6Dh2RzyTCOojQpkt1sGwsMNNput3Z6fcbvwgw0t8Co_ITSfWgj6MAxszfvmA_yvJK8nAbtspOwjbuCUarhUjjmdfWAq81i2fv2rm4LY1V3jOuRfw",
+    "imagen": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQB-jZcSt4Du7fdRqX036d5hQGlrjbALKzwJ-kvw1bIYjgty6OauZPNtrQD_Ow99N-xKU5Hl6rc6wymUxIY0BgwqQIxtLA1zwo_m6tk1l6yX7unZWgvOSLmuA",
     "rating": 4.9,
-    "descripcion": "Apple Macbook Neo 13\" chip A18 — comparado en 3 tienda(s).",
+    "descripcion": "Apple Macbook Neo Ram — comparado en 5 tienda(s).",
     "stock": 19,
     "ofertas": [
       {
         "tienda": "Falabella.com",
-        "precio": 719990,
+        "precio": 699990,
         "link": "https://www.falabella.com/falabella-cl/product/80725441/macbook-neo-13-chip-a18-6n-cpu-5n-gpu-8gb-ram/80725443",
+        "envio": "Consultar"
+      },
+      {
+        "tienda": "Lider",
+        "precio": 659990,
+        "link": "https://www.lider.cl/ip/computadores-y-tablets/macbook-neo-13-a18-6c-gpu-5c-8-ram-256gb-amarillo/00019595085162?channable=050ee6696400303030313935393530383531363244",
         "envio": "Entrega gratuita"
+      },
+      {
+        "tienda": "Paris.cl",
+        "precio": 699990,
+        "link": "https://www.paris.cl/424666999.html?utm_source=google&utm_medium=organic&utm_campaign=organicshopping",
+        "envio": "Consultar"
       },
       {
         "tienda": "Apple",
@@ -29,65 +41,94 @@ export const PRODUCTOS_SEED: Producto[] = [
       {
         "tienda": "Maconline.com",
         "precio": 799990,
-        "link": "https://www.maconline.com/products/macbook-neo?srsltid=AfmBOoqoia3t_nTj1Ez96UqgpL8TrcFF2bQtotrYPt4jFnPJJ69A7lcbI1c#default_sku=MHFD4CI/A",
+        "link": "https://www.maconline.com/products/macbook-neo?srsltid=AfmBOooX-Ut7mWrtpWiXQwQxWTRdodhZPJLSEs5oeuZ9lxiPHu6PYcP1JHU#default_sku=MHFD4CI/A",
         "envio": "Entrega gratuita"
       }
     ]
   },
   {
     "id": 2,
-    "nombre": "Notebook Asus Tuf Gaming F16 Intel Core 5 8gb Ram 512gb Ssd Rtx 3050",
+    "nombre": "Notebook Acer Aspire Lite Al14-31p-31th-1 Intel Core i3 16gb ram 512gb Ssd 14",
     "categoria": "notebook",
-    "imagen": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTlcwtWKjWskcnoeVfjog0zwj0cudzncJg5XS0WuiiKM0u_BsnMdUEWokQAgh0RY2Etu6-FRyCkOtFNaojlDmfN1XkSknZNiZciV4S2HEnVxnYYuyBWzNti",
-    "rating": 4.2,
-    "descripcion": "Notebook Asus Tuf Gaming F16 Intel Core 5 8gb Ram 512gb Ssd Rtx 3050 — comparado en 2 tienda(s).",
+    "imagen": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQ8-qf2W5ILNDuMpVnVa2dN-JGwh8ZhWSO6lhKMSKtzRhYQg8qyn9HuvxBdPrxYdvFDEdcl3c69S4EQpUiSRVbINlt7vuY2mF2yTAp6aD4Z00uqar3KO8X2EJQ",
+    "rating": 4.3,
+    "descripcion": "Notebook Acer Aspire Lite Al14-31p-31th-1 Intel Core i3 16gb ram 512gb Ssd 14 — comparado en 2 tienda(s).",
     "stock": 26,
     "ofertas": [
       {
         "tienda": "Paris.cl",
-        "precio": 759990,
-        "link": "https://www.paris.cl/332774999.html?utm_source=google&utm_medium=organic&utm_campaign=organicshopping",
+        "precio": 498990,
+        "link": "https://www.paris.cl/700874999.html?utm_source=google&utm_medium=organic&utm_campaign=organicshopping",
         "envio": "Consultar"
       },
       {
-        "tienda": "Ripley.com",
-        "precio": 769990,
-        "link": "https://simple.ripley.cl/notebook-asus-tuf-gaming-f16-fx607vjb-rl112w-intel-core-5-8gb-ram-512gb-ssd-nvidia-rtx-3050-16-2000409403301p",
+        "tienda": "acerstore.cl",
+        "precio": 409990,
+        "link": "https://www.acerstore.cl/products/outlet-laptop-aspire-lite",
         "envio": "Consultar"
       }
     ]
   },
   {
     "id": 3,
-    "nombre": "Notebook Lenovo Ideapad Slim 3 15amn8 AMD Ryzen 5 7520u",
+    "nombre": "Notebook Acer Aspire Lite al15-41p-r0zy-1 amd Ryzen 7 32gb ram 512gb",
     "categoria": "notebook",
-    "imagen": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcS4MQgU91vYqCAKOEao7KzUa5bWsEjtLVDBTy-ycqw-yHxfEtdf0zGqaBKxLTqlCsrHlenNI68VpfNDLmv40g5L6Gi9gmSkx3S0uC7mQXCaFcrroLRlD1137w",
-    "rating": 4.6,
-    "descripcion": "Notebook Lenovo Ideapad Slim 3 15amn8 AMD Ryzen 5 7520u — comparado en 2 tienda(s).",
+    "imagen": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcS4_eChaZN9U5-qtvr3fmiW3wwYZGXPrQUTsOS3Hn0r8nSsp0ADBsMv8uCPpNZSXLq6nC17TnqrqBTPvFvZurP0UWfI2ELJ4bNFwGPZ4Yo1nuD4QjVpo91r",
+    "rating": 4.2,
+    "descripcion": "Notebook Acer Aspire Lite al15-41p-r0zy-1 amd Ryzen 7 32gb ram 512gb — comparado en 2 tienda(s).",
     "stock": 7,
     "ofertas": [
       {
-        "tienda": "Ripley.com",
-        "precio": 489990,
-        "link": "https://simple.ripley.cl/notebook-lenovo-ideapad-slim-3-amd-ryzen-5-8gb-ram-512gb-ssd-156-bolso-2000405443233p",
+        "tienda": "acerstore.cl",
+        "precio": 499990,
+        "link": "https://www.acerstore.cl/products/outlet-laptop-aspire-lite-r7",
         "envio": "Consultar"
       },
       {
-        "tienda": "Paris.cl",
-        "precio": 499990,
-        "link": "https://www.paris.cl/106448999.html?utm_source=google&utm_medium=organic&utm_campaign=organicshopping",
-        "envio": "Consultar"
+        "tienda": "Falabella.com",
+        "precio": 619990,
+        "link": "https://www.falabella.com/falabella-cl/product/153917617/notebook-acer-al15-41p-r0zy-amd-ryzen-7-5700u-16gb-ram-512gb-ssd-15-6-fhd/153917618",
+        "envio": "Entrega gratuita"
       }
     ]
   },
   {
     "id": 4,
+    "nombre": "Notebook ASUS Vivobook 15 Intel Core 5 16GB RAM 512GB SSD 15.6",
+    "categoria": "notebook",
+    "imagen": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSiciVAfBtgTY7UC1NDZk9jR7t0nxxC5A6x-DpuTw2t9bLfNt6XZi5gt02TUE5Jjo_NUMy3SuCDj1cZFwRPjYMweHJT731jRoJ2bjthasbVXWv3h_Gboggz",
+    "rating": 5,
+    "descripcion": "Notebook ASUS Vivobook 15 Intel Core 5 16GB RAM 512GB SSD 15.6 — comparado en 3 tienda(s).",
+    "stock": 14,
+    "ofertas": [
+      {
+        "tienda": "pc Factory",
+        "precio": 589990,
+        "link": "https://www.pcfactory.cl/producto/55047-asus-notebook-vivobook-15-intel-core-5-120u-15-6-60hz-16gb-512gb-ssd-windows-11-home-azul-x1504va-bq4206w?srsltid=AfmBOopmvrflZiaPEHOHoFvLcaida9SFYHgIb8BB2VezMjCtPVfWCVK2x1c",
+        "envio": "Entrega por $3.990"
+      },
+      {
+        "tienda": "Paris.cl",
+        "precio": 639990,
+        "link": "https://www.paris.cl/332778999.html?utm_source=google&utm_medium=organic&utm_campaign=organicshopping",
+        "envio": "Consultar"
+      },
+      {
+        "tienda": "Falabella.com",
+        "precio": 669990,
+        "link": "https://www.falabella.com/falabella-cl/product/155153618/notebook-asus-vivobook-15-intel-core-5-16gb-ram-512gb-ssd-15-6/155153619",
+        "envio": "Consultar"
+      }
+    ]
+  },
+  {
+    "id": 5,
     "nombre": "Laptop Notebook E140 14 Pulgadas Intel N3350 6GB RAM SSD 128GB Windows",
     "categoria": "notebook",
-    "imagen": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcRT9h9X_5b24LBQTYnnuze7gvhBhXNLXQbHPpmHTIhTuZSAg0ZTT9hmEEldqp-TSbk-_UoFQvpr-PfQS5Zx1_SJU8Y-w8Pw1gGNOyrz1z5kASwDiK4gmg78",
+    "imagen": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQiHFa7vjr9apntRx-KMeKxumnVcvdionc4Eal8uGbHfR76UpVUpos8xNK1b07EzlRmBefEPa7-578e0iU0Iwxm52Kof2PQ7XkXXiJbtWrbCcOOudQBeloU",
     "rating": null,
     "descripcion": "Laptop Notebook E140 14 Pulgadas Intel N3350 6GB RAM SSD 128GB Windows — comparado en 1 tienda(s).",
-    "stock": 14,
+    "stock": 21,
     "ofertas": [
       {
         "tienda": "Falabella.com",
@@ -98,49 +139,89 @@ export const PRODUCTOS_SEED: Producto[] = [
     ]
   },
   {
-    "id": 5,
-    "nombre": "Notebook HP 15-fc0043la 15.6\" AMD Ryzen 3 7320U 8GB Ram 512GB SSD",
-    "categoria": "notebook",
-    "imagen": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRaLHi0RwnDhudMCupFqm8Eyve937t2x9ln1PoJpADyqo-jgLDqEwIZHAUqIBZOOZy9d6CgAiMMKtjTmrsYY1zrsJD_9gA55NtSH6DHz5uex9QKAy7rx_hd",
-    "rating": 4.4,
-    "descripcion": "Notebook HP 15-fc0043la 15.6\" AMD Ryzen 3 7320U 8GB Ram 512GB SSD — comparado en 3 tienda(s).",
-    "stock": 21,
+    "id": 6,
+    "nombre": "Samsung Galaxy A17 5g 128gb Azul",
+    "categoria": "smartphone",
+    "imagen": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcRl-wsHuvl0aMbS_mZQhFLy729-_ID1TmQeu22Pkafnm0AVn2bNLAsm2f4LDirw-Mksv8gWo3ja2-hLDOdcFh6wVjxBJRcua1EOjGmpsYJ3PgJaKQsKgOqb",
+    "rating": 4.7,
+    "descripcion": "Samsung Galaxy A17 5g 128gb Azul — comparado en 4 tienda(s).",
+    "stock": 28,
     "ofertas": [
       {
-        "tienda": "HP Online Chile",
-        "precio": 693980,
-        "link": "https://www.hp.com/cl-es/shop/notebook-hp-15-fc0043la-a1ud1la-1.html",
+        "tienda": "Falabella.com",
+        "precio": 169990,
+        "link": "https://www.falabella.com/falabella-cl/product/17558929/Samsung-Galaxy-A17-5G-128GB-Negro/17558928",
         "envio": "Entrega gratuita"
       },
       {
-        "tienda": "Falabella.com",
-        "precio": 669990,
-        "link": "https://www.falabella.com/falabella-cl/product/147845980/notebook-hp-15-fc0043la-amd-ryzen-3-8gb-ram-512gb-ssd-windows-11-home/147845981",
+        "tienda": "Paris.cl",
+        "precio": 179990,
+        "link": "https://www.paris.cl/260833999.html?utm_source=google&utm_medium=organic&utm_campaign=organicshopping",
         "envio": "Consultar"
       },
       {
         "tienda": "Lider",
-        "precio": 399990,
-        "link": "https://www.lider.cl/ip/marcas-destacadas/notebook-hp-15-fc0043la-amd-ryzen-3-8gb-ram-512gb-ssd-15-6-fhd-windows-11-home/00019812284368?channable=050ee66964003030303139383132323834333638d9",
+        "precio": 179990,
+        "link": "https://www.lider.cl/ip/telefonia/smartphone-galaxy-a17-5g-128gb-azul-samsung/00880609769623?channable=050ee6696400303038383036303937363936323310",
+        "envio": "Entrega gratuita"
+      },
+      {
+        "tienda": "samsung.com",
+        "precio": 189990,
+        "link": "https://www.samsung.com/cl/smartphones/galaxy-a/galaxy-a17-5g-blue-128gb-sm-a176bzboltl/buy/?modelCode=SM-A176BZBOLTL&srsltid=AfmBOormbvEvTHyAnSov_9kgRu24Zty7cneTEt1tAZASYaWA8dYqVQg3_28",
         "envio": "Entrega gratuita"
       }
     ]
   },
   {
-    "id": 6,
-    "nombre": "Samsung Galaxy A07 lte 128gb",
+    "id": 7,
+    "nombre": "Xiaomi Redmi Note 15 8Gb Ram 256Gb Memoria 108Mpx Dobly Atmos ...",
     "categoria": "smartphone",
-    "imagen": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSOvbC4QemDYyI_7R0jEqidOAk8YEF8sFtm4yQhRD-cPwmRYc7di0ARGgyMGjTXuzOQydevxFINW35BsPqU9RLuuZePD073",
-    "rating": 4.6,
-    "descripcion": "Samsung Galaxy A07 lte 128gb — comparado en 4 tienda(s).",
-    "stock": 28,
+    "imagen": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSnJ8n7EKcJJe2zY9kow3xjBSQnYuHDzZB_Tv3VnALG3kHyxWI6DMaTmZmuTgbBPWhOXBqRpT1EWOnln7fKIZmAeC55G5Ibv-nCUoE4HTl8FeEGJMiFVRq-",
+    "rating": 5,
+    "descripcion": "Xiaomi Redmi Note 15 8Gb Ram 256Gb Memoria 108Mpx Dobly Atmos ... — comparado en 2 tienda(s).",
+    "stock": 9,
     "ofertas": [
       {
-        "tienda": "Movistar",
-        "precio": 109990,
-        "link": "https://catalogo.movistar.cl/tienda/samsung-galaxy-a07-4g-128gb-negro",
-        "envio": "Entrega por $2.990"
+        "tienda": "Paris.cl",
+        "precio": 227990,
+        "link": "https://www.paris.cl/MKO5DPH7GN.html?utm_source=google&utm_medium=organic&utm_campaign=organicshopping",
+        "envio": "Entrega gratuita"
       },
+      {
+        "tienda": "RenuevatuMovil.cl",
+        "precio": 200000,
+        "link": "https://www.renuevatumovil.cl/producto/redmi-note-15-4g-8gb-256gb/",
+        "envio": "Consultar"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "nombre": "Apple iPhone 11",
+    "categoria": "smartphone",
+    "imagen": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRXzhHxso5qRT7YWIVRFzP_UJ2Ct8OCunNV8YzB-L29FrmRUJGIhIR6zVKzsqacePiEiEOAmt4sFw3JARR_ZWfj0ZcbECi3OHi6dbb3xlg",
+    "rating": 4.4,
+    "descripcion": "Apple iPhone 11 — comparado en 1 tienda(s).",
+    "stock": 16,
+    "ofertas": [
+      {
+        "tienda": "lider.cl",
+        "precio": 269990,
+        "link": "https://www.lider.cl/ip/marcas-destacadas/iphone-11-128-gb-negro-reacondicionado/00076031996534",
+        "envio": "Consultar"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "nombre": "Samsung Galaxy A07 128gb Negro",
+    "categoria": "smartphone",
+    "imagen": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQdrCk4SSsYVhYXKN3dTGI8XHUHV_BABAK07L-iAB2GTNPpginS_XOanLk-RF-4ceZnX14gt1lpeOmwdHI_L5k-nk18Ir2llc4vgNaxIAqLA5SJNrNCt5gRog",
+    "rating": 4.6,
+    "descripcion": "Samsung Galaxy A07 128gb Negro — comparado en 4 tienda(s).",
+    "stock": 23,
+    "ofertas": [
       {
         "tienda": "Paris.cl",
         "precio": 99990,
@@ -150,210 +231,141 @@ export const PRODUCTOS_SEED: Producto[] = [
       {
         "tienda": "Lider.cl",
         "precio": 99990,
-        "link": "https://super.lider.cl/ip/tecnologia/smartphone-galaxy-a07-4g-128gb-negro-samsung/00880609766140?channable=09e25d696400303038383036303937363631343049&srsltid=AfmBOoo7TB7ihVA71fjedfaCUczHFUb3bQJeHH4NkV9ahsaFGa8OTuF9iog",
+        "link": "https://super.lider.cl/ip/tecnologia/smartphone-galaxy-a07-4g-128gb-negro-samsung/00880609766140?channable=09e25d696400303038383036303937363631343049&srsltid=AfmBOorUwuzBFi9-876dFMIPg55djKPpObAbpJ9h0zYBpY9L8gGYxB1yCYk",
         "envio": "Entrega gratuita"
       },
       {
         "tienda": "samsung.com",
         "precio": 129990,
-        "link": "https://www.samsung.com/cl/smartphones/galaxy-a/galaxy-a07-black-128gb-sm-a075mzkgltl/buy/?modelCode=SM-A075MZKGLTL&srsltid=AfmBOopkG9ERzhuMX0duB84cK__6KUK_EmRfzoPn_rTIBT1JmHSS7KKjcTs",
-        "envio": "Entrega gratuita"
-      }
-    ]
-  },
-  {
-    "id": 7,
-    "nombre": "Xiaomi Smartphone Redmi A5 4G 128Gb Dorado",
-    "categoria": "smartphone",
-    "imagen": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTy3HDdG4xMn03W9jEOoS4XFo7QKa4BbHHonppIOovN70t4_-DsWKLiJ-HpFrfcaNWYvwsSCInudFp72LfDKIwKxK6_U50WwYE0hwM3-wQ2bgzUimNuMJOo",
-    "rating": 4.9,
-    "descripcion": "Xiaomi Smartphone Redmi A5 4G 128Gb Dorado — comparado en 3 tienda(s).",
-    "stock": 9,
-    "ofertas": [
-      {
-        "tienda": "Lider",
-        "precio": 99990,
-        "link": "https://www.lider.cl/ip/telefonia/smartphone-redmi-a5-4g-128gb-dorado/00693255443028?channable=050ee66964003030363933323535343433303238c0",
+        "link": "https://www.samsung.com/cl/smartphones/galaxy-a/galaxy-a07-black-128gb-sm-a075mzkgltl/buy/?modelCode=SM-A075MZKGLTL&srsltid=AfmBOoodhhW-TAiEQH4_D8bjVwZGx37r-Q12dnq8NOgclG_E11k0NwpSMac",
         "envio": "Entrega gratuita"
       },
-      {
-        "tienda": "Hites",
-        "precio": 99990,
-        "link": "https://www.hites.com/xiaomi-redmi-a5-128gb-4gb-ram-sandy-gold-10260000192001.html?srsltid=AfmBOorzjGk5mZKF23nJ-Itxyl7YBcGaQBoLgOWlLwsufXATFGWYWzf7C_M",
-        "envio": "Consultar"
-      },
-      {
-        "tienda": "abc.cl",
-        "precio": 89990,
-        "link": "https://www.abc.cl/celular-xiaomi-a5-128gb-6.88-dorado/28417772.html?srsltid=AfmBOopbP1wBrC60PZ8wY1FYYyRNeDs0Z76jmilI3iXlQJL9a57NMwG6IN8",
-        "envio": "Consultar"
-      }
-    ]
-  },
-  {
-    "id": 8,
-    "nombre": "Motorola Moto Edge 60 Fusion 256GB",
-    "categoria": "smartphone",
-    "imagen": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcRznnS_nPA6BepuuHrWE0szqyTsq59qTxhh9tpl66ZHPMuudBVNPP4szRGCKTR8oUAk_c8PfzYhcPF9nvL3Dy40r1vdHkaQRR5BhuMB4f63I03tW4q1pq32uw",
-    "rating": 4.8,
-    "descripcion": "Motorola Moto Edge 60 Fusion 256GB — comparado en 3 tienda(s).",
-    "stock": 16,
-    "ofertas": [
       {
         "tienda": "WOM",
-        "precio": 288000,
-        "link": "https://store.wom.cl/equipos/XT2503-1/Motorola-Edge-60-Fusion-5G-256GB?srsltid=AfmBOoq69Fpl9_QVkV86ckf_a_IntNSHaqX_o1rsz9sIyK6Apq0TVtvSJIk",
+        "precio": 88800,
+        "link": "https://store.wom.cl/equipos/SM-A075/Samsung-Galaxy-A07-4G-128GB?srsltid=AfmBOopQ95FNXR48tLJFXY-3J-w2uDogSWO45s6_IjDVKRhdyVTIFmy9eXk",
         "envio": "Entrega gratuita"
-      },
-      {
-        "tienda": "Lider",
-        "precio": 264990,
-        "link": "https://www.lider.cl/ip/telefonia/smartphone-moto-edge-60-fusion-5g-256gb-verde/00084002328637?channable=050ee6696400303030383430303233323836333721",
-        "envio": "Entrega gratuita"
-      },
-      {
-        "tienda": "abc.cl",
-        "precio": 299500,
-        "link": "https://www.abc.cl/celular-motorola-edge-60-fusion-5g-256gb-667-verde/28497601.html?srsltid=AfmBOoq9-y7Oa4LxyDXIAaau798IeN_KCNPZzesExDYbGKDh8J59omMyB-w",
-        "envio": "Consultar"
-      }
-    ]
-  },
-  {
-    "id": 9,
-    "nombre": "Honor Magic 8 Lite 8+256gb",
-    "categoria": "smartphone",
-    "imagen": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSEuvfks0u4aqRQMGn0SeMGcJXkWa-G7ObaUH6JVQ5qhVSR7S2WbjZagxxONO_AnjDLuDbQk0satDJ29t8nYC6qCEWvymnTjukWWUwVgvy37GxvpsvJnYlb",
-    "rating": 4.9,
-    "descripcion": "Honor Magic 8 Lite 8+256gb — comparado en 3 tienda(s).",
-    "stock": 23,
-    "ofertas": [
-      {
-        "tienda": "abc.cl",
-        "precio": 339990,
-        "link": "https://www.abc.cl/celular-honor-magic-8-lite-2g3g4g5g-256-gb-6.79-verde/29019029.html?srsltid=AfmBOoplTdJVni_ImBtB-3gZgEJX3FHmGtbzct8B8PXeEiLUJR4Bu0tlEe4",
-        "envio": "Consultar"
-      },
-      {
-        "tienda": "Lider",
-        "precio": 319990,
-        "link": "https://www.lider.cl/ip/telefonia/smartphone-honor-magic-8-lite-256-gb-5g-forest-green/00693652088530?channable=050ee6696400303036393336353230383835333093",
-        "envio": "Entrega gratuita"
-      },
-      {
-        "tienda": "Paris.cl",
-        "precio": 389990,
-        "link": "https://www.paris.cl/374037999.html?utm_source=google&utm_medium=organic&utm_campaign=organicshopping",
-        "envio": "Consultar"
       }
     ]
   },
   {
     "id": 10,
-    "nombre": "Motorola Moto G86 Power 5G 256GB",
+    "nombre": "Xiaomi Redmi Note 15 5G 256GB",
     "categoria": "smartphone",
-    "imagen": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRad3NbD1JdG8YneRRfE28I7LL7rq0h_3FLeRPpHrSJzjfWYuxWWHyP_6loiCf86-OzhJJ16hZDlVuoTZwgUXWB_5afGzOhokLBH-8wZVRTJL1YcW8UTXq6",
-    "rating": 4.6,
-    "descripcion": "Motorola Moto G86 Power 5G 256GB — comparado en 2 tienda(s).",
+    "imagen": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQoH0NcGE1tUC_RbXUnj-jtIkDWozZaIRbaH3-zv4xHSqqO-6dpPUEJrEDpyYXBhpg1Cv9Oh74-Tlo4IUWVOAK57W15eLDAiq8_sWT3kjjyfpcD-xZ6p9iWUg",
+    "rating": 4.9,
+    "descripcion": "Xiaomi Redmi Note 15 5G 256GB — comparado en 3 tienda(s).",
     "stock": 30,
     "ofertas": [
       {
-        "tienda": "Falabella.com",
-        "precio": 229990,
-        "link": "https://www.falabella.com/falabella-cl/product/17536132/Celular-Motorola-Moto-g86-Power-256GB/17536132",
+        "tienda": "Entel",
+        "precio": 1125000,
+        "link": "https://miportal.entel.cl/personas/catalogo/prod2680066?omc=c_shopping&color=negro&capacidad=256GB&srsltid=AfmBOorFntQUkRY-lJvIYt8bt6J49SLO27A_a5pB6PAsDrquAVGOkNRiV3k",
         "envio": "Entrega gratuita"
       },
       {
-        "tienda": "Movistar",
-        "precio": 239990,
-        "link": "https://catalogo.movistar.cl/tienda/motorola-moto-g86-power-5g-256gb-azul",
-        "envio": "Entrega por $2.990"
+        "tienda": "Lider",
+        "precio": 279990,
+        "link": "https://www.lider.cl/ip/telefonia/smartphone-redmi-note-15-256-gb-5g-negro/00693255446932?channable=050ee669640030303639333235353434363933325e",
+        "envio": "Entrega gratuita"
+      },
+      {
+        "tienda": "Paris.cl",
+        "precio": 289990,
+        "link": "https://www.paris.cl/422528999.html?utm_source=google&utm_medium=organic&utm_campaign=organicshopping",
+        "envio": "Consultar"
       }
     ]
   },
   {
     "id": 11,
-    "nombre": "Xiaomi Redmi Buds 6 Play",
+    "nombre": "Samsung Galaxy Buds Core",
     "categoria": "audífonos",
-    "imagen": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQfZdwpzZI46ObD8zclAWJ7v8KcU7UnbpAXbYakj0pBqXvXtInq4Xl3f0_hfTzBSd7PTsFXUZi8aWBaHDzHOrylOz_FFMwezklFULmgwdAFZsF4SrycEPoXCw",
+    "imagen": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcR4uJJhtXDEL-p3bh8WRnF1ISMRgl2NEs2Hvs_ij13QLXQr47g55Emn16qtIncuRdlhZg6gjqA6k4_hCjZaDM5RwspWjBKWkA",
     "rating": 4.8,
-    "descripcion": "Xiaomi Redmi Buds 6 Play — comparado en 5 tienda(s).",
+    "descripcion": "Samsung Galaxy Buds Core — comparado en 5 tienda(s).",
     "stock": 11,
     "ofertas": [
       {
-        "tienda": "Xiaomi Chile",
-        "precio": 13990,
-        "link": "https://www.mi.com/cl/product/redmi-buds-6-play/?skupanel=1&gid=4223713824",
-        "envio": "Entrega por $4.000"
-      },
-      {
-        "tienda": "pc Factory",
-        "precio": 10990,
-        "link": "https://www.pcfactory.cl/producto/53269-xiaomi-audifonos-bluetooth-redmi-buds-6-play-negro?srsltid=AfmBOorKG1cP_AR2CoxRMs-QTZ_ScU8T8Dj_oY0e0bNx4_12eV07Asd4pqo",
-        "envio": "Entrega por $3.990"
-      },
-      {
-        "tienda": "Lider",
-        "precio": 11990,
-        "link": "https://www.lider.cl/ip/audio/audifonos-redmi-buds-6-play-black/00694181279124?channable=050ee66964003030363934313831323739313234f7",
-        "envio": "Entrega gratuita en pedidos que superen los $45.001"
+        "tienda": "Movistar",
+        "precio": 34990,
+        "link": "https://catalogo.movistar.cl/tienda/samsung-galaxy-buds-core-negro",
+        "envio": "Entrega por $2.990"
       },
       {
         "tienda": "Falabella.com",
-        "precio": 12490,
-        "link": "https://www.falabella.com/falabella-cl/product/142432875/Auriculares-Xiaomi-Redmi-Buds-6-Play-Bluetooth-5.4-Color-Negro/142432876",
-        "envio": "Consultar"
+        "precio": 39990,
+        "link": "https://www.falabella.com/falabella-cl/product/80530068/audifonos-bluetooth-galaxy-buds-core-sm-r410nzkalta-samsung/80530069",
+        "envio": "Entrega gratuita"
       },
       {
         "tienda": "Paris.cl",
-        "precio": 13990,
-        "link": "https://www.paris.cl/870486999.html?utm_source=google&utm_medium=organic&utm_campaign=organicshopping",
+        "precio": 39990,
+        "link": "https://www.paris.cl/208988999.html?utm_source=google&utm_medium=organic&utm_campaign=organicshopping",
         "envio": "Consultar"
+      },
+      {
+        "tienda": "pc Factory",
+        "precio": 39990,
+        "link": "https://www.pcfactory.cl/producto/54705-samsung-audifonos-galaxy-buds-core-negro?srsltid=AfmBOooIGldbl8hftodZCqR6oUZ3NOorwGE37GvDafRHFKCNdiTEDsHdtIk",
+        "envio": "Entrega por $3.990"
+      },
+      {
+        "tienda": "samsung.com",
+        "precio": 59990,
+        "link": "https://www.samsung.com/cl/audio-sound/galaxy-buds/galaxy-buds-core-black-sm-r410nzkacho/?srsltid=AfmBOooP9fpaMDd3NJYNOr3OehGA9dEiG8wXqdFR-EPmZy6qRuUIB-nGIgk",
+        "envio": "Entrega por $3.990"
       }
     ]
   },
   {
     "id": 12,
-    "nombre": "Lenovo Auriculares Bluetooth Le302",
+    "nombre": "Audifonos Xiaomi Redmi Buds 8 Active",
     "categoria": "audífonos",
-    "imagen": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRyUxa4rWMy5H-owjQs593_SWU46Nqp5KsynIxsx5DWtkadYmOyL1X1UQKYBqDfyJfYaGS_C8V0d33KrBc8hYSZujo1SAqYIWrhX3cW9GAbNlk4ZvDZvd4gyQ",
-    "rating": 4.6,
-    "descripcion": "Lenovo Auriculares Bluetooth Le302 — comparado en 4 tienda(s).",
+    "imagen": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQAzyp7gXLXHXrHmDPszEvTKwI9u4Yyhshx3MCnRfAPEErGj3VkhyylAqgGMySOXUlQ22ffklRkannJv02TuQCf4oP4UOt4Jm8DkjHbQIhaL9ht65ZjiFLS",
+    "rating": 4.8,
+    "descripcion": "Audifonos Xiaomi Redmi Buds 8 Active — comparado en 5 tienda(s).",
     "stock": 18,
     "ofertas": [
       {
-        "tienda": "Paris.cl",
-        "precio": 24990,
-        "link": "https://www.paris.cl/MKZ3P5IYXW.html?utm_source=google&utm_medium=organic&utm_campaign=organicshopping",
-        "envio": "Entrega gratuita"
-      },
-      {
-        "tienda": "Lider",
-        "precio": 21990,
-        "link": "https://www.lider.cl/ip/accesorios-computacion/auriculares-bluetooth-le302/00697885817022?channable=050ee669640030303639373838353831373032323d",
-        "envio": "Entrega gratuita en pedidos que superen los $45.001"
-      },
-      {
-        "tienda": "Falabella.com",
-        "precio": 25990,
-        "link": "https://www.falabella.com/falabella-cl/product/146698451/audifonos-lenovo-clip-max-le06-tws-bluetooth-6-0-y-estuche/151118221",
+        "tienda": "abc.cl",
+        "precio": 17490,
+        "link": "https://www.abc.cl/audifonos-bluetooth--xiaomi-redmi-buds-8-active-negro/29210594.html?srsltid=AfmBOopmqi0wPmazvIHoZgEDNoj9WJn5_zOyKBth6N4F8-krUgJEvH00--4",
         "envio": "Consultar"
       },
       {
-        "tienda": "Sodimac",
-        "precio": 27990,
-        "link": "https://www.sodimac.cl/sodimac-cl/articulo/155275051/audifonos-lenovo-clip-max-le302-tws-bluetooth-6-0-y-auriculares-y-orejeras-dorado-y-estuche/155275058",
-        "envio": "Devoluciones gratis por 30 días"
+        "tienda": "pc Factory",
+        "precio": 17490,
+        "link": "https://www.pcfactory.cl/producto/56250-xiaomi-audifonos-xiaomi-redmi-buds-8-active-negro?srsltid=AfmBOopybM78ImDyaTFfhvVErGI5UjGpUwSKMTeCNx8dNFW8nfqu7GpguzY",
+        "envio": "Entrega por $3.990"
+      },
+      {
+        "tienda": "Paris.cl",
+        "precio": 18990,
+        "link": "https://www.paris.cl/456892999.html?utm_source=google&utm_medium=organic&utm_campaign=organicshopping",
+        "envio": "Consultar"
+      },
+      {
+        "tienda": "Falabella.com",
+        "precio": 19990,
+        "link": "https://www.falabella.com/falabella-cl/product/80736833/audifonos-in-ear-redmi-buds-8-active-black-xiaomi/80736834",
+        "envio": "Consultar"
+      },
+      {
+        "tienda": "Xiaomi Chile",
+        "precio": 20990,
+        "link": "https://www.mi.com/cl/product/redmi-buds-8-active/?skupanel=1&gid=4223726991",
+        "envio": "Entrega gratuita"
       }
     ]
   },
   {
     "id": 13,
-    "nombre": "Audífonos Bluetooth WF-C510 Sony",
+    "nombre": "Audífonos True Wireless Bluetooth WF-C510 Sony",
     "categoria": "audífonos",
     "imagen": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRFCu1GAVNAVBq3uHk0kLDQH5zsZ44DCQTYplFUFQ1Xan1tTRhfTq9OyYAGkN1-3Nrzsi7Goymqg7vTyZk6qo7wGU8USvld09rc9XLLhu6wJ0SsOiJIsClZow",
     "rating": 4.7,
-    "descripcion": "Audífonos Bluetooth WF-C510 Sony — comparado en 4 tienda(s).",
+    "descripcion": "Audífonos True Wireless Bluetooth WF-C510 Sony — comparado en 4 tienda(s).",
     "stock": 25,
     "ofertas": [
       {
@@ -384,175 +396,291 @@ export const PRODUCTOS_SEED: Producto[] = [
   },
   {
     "id": 14,
-    "nombre": "Audífono Bluetooth Hoco W35",
+    "nombre": "Apple AirPods 4",
     "categoria": "audífonos",
-    "imagen": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRu5fxOoCgJHXq9XOlJ-UxRLz_ujJhASWsIetbzt_dlwrUyqCtjSfiG-lJsQgWuN3Cgr-Zye5-NBlexdR6S8BLag9xtEC4go50oufdXAdtop2ZJeU6MXjMNug",
-    "rating": 4.6,
-    "descripcion": "Audífono Bluetooth Hoco W35 — comparado en 4 tienda(s).",
+    "imagen": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRlKDXODX3iuzNr1h0usSyhlU_OZdZZYg4CDIlP5zu9HRk4rmQZNw-UNNaItM4tGEi9z8SOXunAawvHp1d7Vn6CA00ul3x2bpBxbNzC3f82rPIEu0LjePgL",
+    "rating": 4.5,
+    "descripcion": "Apple AirPods 4 — comparado en 4 tienda(s).",
     "stock": 6,
     "ofertas": [
       {
-        "tienda": "mercadolibre.cl",
-        "precio": 18990,
-        "link": "https://www.mercadolibre.cl/audifonos-hoco-w35-bluetooth-45h-over-ear-negro-inalambricos/up/MLCU3823978298",
-        "envio": "Devoluciones gratis por 30 días"
-      },
-      {
-        "tienda": "Sodimac",
-        "precio": 14990,
-        "link": "https://www.sodimac.cl/sodimac-cl/articulo/132682204/Audifonos-Hoco-W35-Air-Triumph-Over-Ear-Bluetooth-Negro/132682205",
-        "envio": "Devoluciones gratis por 30 días"
-      },
-      {
-        "tienda": "Falabella.com",
-        "precio": 14990,
-        "link": "https://www.falabella.com/falabella-cl/product/132682204/Audifonos-Hoco-W35-Air-Triumph-Over-Ear-Bluetooth-Negro/132682205",
-        "envio": "Consultar"
+        "tienda": "Lider",
+        "precio": 125990,
+        "link": "https://www.lider.cl/ip/mundo-apple/audifonos-in-ear-airpods-4-mxp63am-a-bluetooth-5-3-blanco/00019594968845?channable=050ee6696400303030313935393439363838343504",
+        "envio": "Entrega gratuita"
       },
       {
         "tienda": "Paris.cl",
-        "precio": 19990,
-        "link": "https://www.paris.cl/MKODCEUUTU.html?utm_source=google&utm_medium=organic&utm_campaign=organicshopping",
+        "precio": 129990,
+        "link": "https://www.paris.cl/MKPIVK69PY.html?utm_source=google&utm_medium=organic&utm_campaign=organicshopping",
+        "envio": "Entrega gratuita"
+      },
+      {
+        "tienda": "Falabella.com",
+        "precio": 139990,
+        "link": "https://www.falabella.com/falabella-cl/product/17266991/Apple-Airpods-4/17266991",
+        "envio": "Entrega gratuita"
+      },
+      {
+        "tienda": "WOM",
+        "precio": 149990,
+        "link": "https://store.wom.cl/accesorios/Apple---Airpods-4?sku=001.007.0284&srsltid=AfmBOorqevarpFBeqcrdlnHsmmRxvbgCDV8V5YaMj9DOBl91Er0an8G2SLI",
         "envio": "Entrega gratuita"
       }
     ]
   },
   {
     "id": 15,
-    "nombre": "Xiaomi Audífonos Bluetooth Redmi Buds 8 Lite",
+    "nombre": "Audifonos Bluetooth Inalámbricos Blik Air500",
     "categoria": "audífonos",
-    "imagen": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSQLCSjxH467OZBSm7t-83_Y7VLXbpPmftrX9GlETe4Pcp-oRmnmIuedYBfYShu71TMqqenVR40fqlWjMktKvbCMKHlpAc81N2GI8nbZ6TCRdyq3laXVNKv",
-    "rating": 4.8,
-    "descripcion": "Xiaomi Audífonos Bluetooth Redmi Buds 8 Lite — comparado en 5 tienda(s).",
+    "imagen": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRNgJdiCpdyVAO1o_R4uaj4zkQgC-Q8kE67V5oteFjSxs7ZhDwufy9YYH_Uj5jfDUDBAgfB0J8I5tvrKfFfTKjtytUfKlgCJaKEYyHku3nw5n73uXBvbargnA",
+    "rating": 4.1,
+    "descripcion": "Audifonos Bluetooth Inalámbricos Blik Air500 — comparado en 5 tienda(s).",
     "stock": 13,
     "ofertas": [
       {
-        "tienda": "Falabella.com",
-        "precio": 21990,
-        "link": "https://www.falabella.com/falabella-cl/product/80692848/Aud%C3%ADfonos-In-ear-Redmi-Buds-8-Lite-Black-Xiaomi/80692849",
-        "envio": "Consultar"
+        "tienda": "Sodimac",
+        "precio": 9990,
+        "link": "https://www.sodimac.cl/sodimac-cl/articulo/154553588/audifonos-bluetooth-inalambricos-blik-air500-blanco/154553590",
+        "envio": "Devoluciones gratis por 30 días"
       },
       {
         "tienda": "pc Factory",
-        "precio": 20390,
-        "link": "https://www.pcfactory.cl/producto/55474-xiaomi-audifonos-redmi-buds-8-lite-negro?srsltid=AfmBOoqCr9THcTxNfaO3PnSlXhvZH9SQQ9EFzETDeivK5h0k26J9c8fYR_4",
+        "precio": 9990,
+        "link": "https://www.pcfactory.cl/producto/56492-blik-audifonos-in-ear-air500-blanco-blik?srsltid=AfmBOoqoolvZ1GXCsceoIZ2_czuqQQ3ry03iLnnkHmK4seevO5ZxQ6plodA",
         "envio": "Entrega por $3.990"
       },
       {
-        "tienda": "Entel",
-        "precio": 22990,
-        "link": "https://miportal.entel.cl/personas/catalogo/prod2750067?omc=c_shopping&srsltid=AfmBOoqKDX9H--wfBSR4mC1bwjP2n1DzAu-ZGeGj2c46JfVhOVuuYj1YN8I",
-        "envio": "Entrega gratuita"
-      },
-      {
-        "tienda": "Paris.cl",
-        "precio": 22990,
-        "link": "https://www.paris.cl/378622999.html?utm_source=google&utm_medium=organic&utm_campaign=organicshopping",
+        "tienda": "Falabella.com",
+        "precio": 9990,
+        "link": "https://www.falabella.com/falabella-cl/product/155422765/audifonos-bluetooth-inalambricos-blik-air500-blanco/155422767",
         "envio": "Consultar"
       },
       {
         "tienda": "Lider",
-        "precio": 23990,
-        "link": "https://www.lider.cl/ip/audifonos-y-accesorios/audifonos-inalambricos-xiaomi-redmi-buds-8-lite-anc-enc-bluetooth-5-4-cancelacion-de-ruido-negro/00693255447189?channable=050ee6696400303036393332353534343731383905",
+        "precio": 9990,
+        "link": "https://www.lider.cl/ip/audio/audifonos-bluetooth-inalambricos-blik-air500-negro/00978334925231?channable=050ee66964003030393738333334393235323331ee",
         "envio": "Entrega gratuita en pedidos que superen los $45.001"
+      },
+      {
+        "tienda": "Paris.cl",
+        "precio": 10990,
+        "link": "https://www.paris.cl/MKHK0WU4V9.html?utm_source=google&utm_medium=organic&utm_campaign=organicshopping",
+        "envio": "Consultar"
       }
     ]
   },
   {
     "id": 16,
-    "nombre": "Monitor Gamer Kolke 27 Ips Full HD 165hz 1ms Freesync",
-    "categoria": "monitor",
-    "imagen": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTz3c6B-UFbO4ukwmFkxMrWeAUQsz1UyfUCGD14OUHwX7SOTH1GoG2GZtcYlUIchjM52mYUDkg51qRb4FNFxMIKLXD7iyQmj294rUhH5Ub2d_HqnordkQuTDQ",
-    "rating": 4.1,
-    "descripcion": "Monitor Gamer Kolke 27 Ips Full HD 165hz 1ms Freesync — comparado en 3 tienda(s).",
+    "nombre": "Apple Watch SE 3 GPS 40mm aluminio con Correa deportiva",
+    "categoria": "smartwatch",
+    "imagen": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTim5uwGMkjcjzgR_oEXxnGDe7yuMxPcahEQkdNH9Gwg-_gCCd-704eQBSjnZObt5_KT0uwI1Xc0T-1Rf7HYdsPfOGoC4dcArLRVt_w2d6cY7U_zQpos5l51Q",
+    "rating": 4.8,
+    "descripcion": "Apple Watch SE 3 GPS 40mm aluminio con Correa deportiva — comparado en 4 tienda(s).",
     "stock": 20,
     "ofertas": [
       {
-        "tienda": "LOi Chile",
-        "precio": 104990,
-        "link": "https://loichile.cl/oferta/monitor-kolke-flat-kes-628",
+        "tienda": "Apple",
+        "precio": 333990,
+        "link": "https://www.apple.com/cl/shop/go/product/MEHN4AM/A?cid=aos-cl-seo-pla-watch",
+        "envio": "Entrega gratuita"
+      },
+      {
+        "tienda": "Falabella.com",
+        "precio": 299990,
+        "link": "https://www.falabella.com/falabella-cl/product/17584355/Apple-Watch-SE-3-(Gps)-40-mm-Talla-M-L/17584356",
+        "envio": "Entrega gratuita"
+      },
+      {
+        "tienda": "Paris.cl",
+        "precio": 299990,
+        "link": "https://www.paris.cl/278895999.html?utm_source=google&utm_medium=organic&utm_campaign=organicshopping",
         "envio": "Consultar"
       },
       {
-        "tienda": "Sodimac",
-        "precio": 129990,
-        "link": "https://www.sodimac.cl/sodimac-cl/articulo/126052432/Monitor-Gamer-Kolke-27-IPS-Full-HD-165Hz-1ms-Freesync/126052433",
-        "envio": "Devoluciones gratis por 30 días"
-      },
-      {
-        "tienda": "Lider",
-        "precio": 129990,
-        "link": "https://www.lider.cl/ip/tecnologia/monitor-gamer-kolke-27-ips-fhd-165hz-1ms-freesync/00697517466697?channable=050ee66964003030363937353137343636363937ee",
+        "tienda": "Maconline.com",
+        "precio": 309990,
+        "link": "https://www.maconline.com/products/apple-watch-se-3?srsltid=AfmBOooI4JfQ8ymfgmbNK_IOO6kj6v-OpcOz0ZCPaD-eQS3bxzoWzrWHCPo#default_sku=MEHC4AM/A",
         "envio": "Entrega gratuita"
       }
     ]
   },
   {
     "id": 17,
-    "nombre": "Monitor Gamer Curvo 27 Pulgadas Hosser Fhd Gaming Monitor",
-    "categoria": "monitor",
-    "imagen": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTehaZc15uZO29xqgh88QYV8lcXv72BXPlBiM8fBSdQkmqUmxbMLIDrYTFXXJxQRddiSPb3xO77stHbdyHRpuPOUCDSUKLLVukY5Uj3z6NeHPR2FyquVr7UUw",
-    "rating": 4.2,
-    "descripcion": "Monitor Gamer Curvo 27 Pulgadas Hosser Fhd Gaming Monitor — comparado en 4 tienda(s).",
+    "nombre": "Apple Watch Ultra 3 Correa",
+    "categoria": "smartwatch",
+    "imagen": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcS9XVqOaqx9mplRCQ6fxdQS7JvRKRhH--6dsi-5uU4txZW5B8QVs1Vgn5y_rQ2vp6L43WtjOQjYvSA65hsWo_Wpiu8SfzfpM24Lc5TqJJgH82hC3YtxQTuYvg",
+    "rating": 4.7,
+    "descripcion": "Apple Watch Ultra 3 Correa — comparado en 3 tienda(s).",
     "stock": 27,
     "ofertas": [
       {
-        "tienda": "Falabella.com",
-        "precio": 114990,
-        "link": "https://www.falabella.com/falabella-cl/product/133722042/Monitor-Gamer-Curvo-27-Pulgadas-Hosser-FHD-Gaming-Monitor/133722045",
-        "envio": "Consultar"
-      },
-      {
-        "tienda": "Sodimac",
-        "precio": 114990,
-        "link": "https://www.sodimac.cl/sodimac-cl/articulo/133722042/Monitor-Gamer-Curvo-27-Pulgadas-Hosser-FHD-Gaming-Monitor/133722045",
-        "envio": "Devoluciones gratis por 30 días"
-      },
-      {
-        "tienda": "Paris.cl",
-        "precio": 114990,
-        "link": "https://www.paris.cl/MKLWORV8DV.html?utm_source=google&utm_medium=organic&utm_campaign=organicshopping",
+        "tienda": "Apple",
+        "precio": 1119990,
+        "link": "https://www.apple.com/cl/shop/go/product/MF1N4BE/A?cid=aos-cl-seo-pla-watch",
         "envio": "Entrega gratuita"
       },
       {
-        "tienda": "lider.cl",
-        "precio": 114990,
-        "link": "https://www.lider.cl/ip/accesorios-computacion/monitor-gamer-curvo-27-pulgadas-hosser-fhd-gaming-monitor/00079919212261",
+        "tienda": "Maconline.com",
+        "precio": 999990,
+        "link": "https://www.maconline.com/products/apple-watch-ultra-3?srsltid=AfmBOor93R1ZKABmkbwyyRGMv7IQkGi5xbH52hrEsobEJg-jgxrPTLcCNpo#default_sku=MF1H4BE/A",
+        "envio": "Entrega gratuita"
+      },
+      {
+        "tienda": "Falabella.com",
+        "precio": 999999,
+        "link": "https://www.falabella.com/falabella-cl/product/155491863/apple-reloj-ultra-3-49-mm-mf0x4-con-caja-de-titanio-negro-y-correa-alpine-loop-negra-l/155491865",
         "envio": "Consultar"
       }
     ]
   },
   {
     "id": 18,
-    "nombre": "Monitor 22\" Full HD, Panel IPS, 100Hz",
-    "categoria": "monitor",
-    "imagen": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcR-jk21mJe020p7GWHY8q8JKOBBQT_O2DV8vZrmg9nc997YO90sRy6pTchhtNe19N4UfBAWjslLF3Ehd_FI3ACzwhjWPRltA7iUAcjBluUedt4-Q-njFpz4YQ",
-    "rating": null,
-    "descripcion": "Monitor 22\" Full HD, Panel IPS, 100Hz — comparado en 1 tienda(s).",
+    "nombre": "Apple Watch Series 11 GPS aluminio",
+    "categoria": "smartwatch",
+    "imagen": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTdUeJfnziSbhLqHNBbkJV8gOruSV5Pz0OwpoU6-4PSbVkJYBmSp_6GdpLVadM6EpN2QEIUACij8gQ7pygF7aOTHMB23vji9lyZH_vsBZDtonUBsMfNyatJ",
+    "rating": 4.8,
+    "descripcion": "Apple Watch Series 11 GPS aluminio — comparado en 3 tienda(s).",
     "stock": 8,
     "ofertas": [
       {
-        "tienda": "pc Factory",
-        "precio": 65990,
-        "link": "https://www.pcfactory.cl/producto/49127-gear-monitor-22-full-hd-panel-ips-100hz?srsltid=AfmBOorB7smt2JbISkpTSf2lLuAkjmZ3WJ_NFvuOo1VxP0EaCjyTnaTR-aY",
-        "envio": "Entrega por $3.990"
+        "tienda": "Falabella.com",
+        "precio": 519990,
+        "link": "https://www.falabella.com/falabella-cl/product/17584369/Apple-Watch-Series-11-(Gps)---46mm--Talla-S-M/17584371",
+        "envio": "Entrega gratuita"
+      },
+      {
+        "tienda": "Apple",
+        "precio": 533990,
+        "link": "https://www.apple.com/cl/shop/go/product/MEV64AM/A?cid=aos-cl-seo-pla-watch",
+        "envio": "Entrega gratuita"
+      },
+      {
+        "tienda": "Maconline.com",
+        "precio": 549990,
+        "link": "https://www.maconline.com/products/apple-watch-series-11?srsltid=AfmBOoqLOCWtRSTXKR2_4yBIhSWfvx5WGzvaBNO-J6RqAgSXHfmojSDiG7M#default_sku=MEV04AM/A",
+        "envio": "Entrega gratuita"
       }
     ]
   },
   {
     "id": 19,
-    "nombre": "Monitor PC Gamer Curvo 32 Pulgadas Hosser Fhd Gaming",
-    "categoria": "monitor",
-    "imagen": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQJ-PFk6dZYYm5glHmF9PwiOHkgI-fJOMJUzbh_hZtGeSmvncpDyQ66fRfLxqTkloQouqjGmJwYmj3IM0PLlDgETwSqSggsxvHhK5CBVupFaBC0clz7k3eDNQ",
-    "rating": 4.4,
-    "descripcion": "Monitor PC Gamer Curvo 32 Pulgadas Hosser Fhd Gaming — comparado en 3 tienda(s).",
+    "nombre": "Apple Watch Series 11 GPS",
+    "categoria": "smartwatch",
+    "imagen": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTY8iDPwE7qdijpKKkB3o4n9a6hd7FG1Ax4c1dRjnkUMWX0JNZJQbCsCCZTkq67aVqQou_1x7-gCAUhTYzBERpIV6K9QDBt6vjtH_FXG8gc_Pt17rC72G-2",
+    "rating": 4.7,
+    "descripcion": "Apple Watch Series 11 GPS — comparado en 2 tienda(s).",
     "stock": 15,
     "ofertas": [
       {
-        "tienda": "Lider",
-        "precio": 189990,
-        "link": "https://www.lider.cl/ip/accesorios-computacion/monitor-pc-gamer-curvo-32-pulgadas-hosser-fhd-gaming/00079919251824?channable=050ee6696400303030373939313932353138323471",
+        "tienda": "Falabella.com",
+        "precio": 470990,
+        "link": "https://www.falabella.com/falabella-cl/product/153644774/apple-reloj-11-42mm-meu04-con-caja-de-aluminio-oro-rosa-y-correa-deportiva-tono-rubor-claro-s-m/153644775",
         "envio": "Entrega gratuita"
+      },
+      {
+        "tienda": "Apple",
+        "precio": 619990,
+        "link": "https://www.apple.com/cl/shop/go/product/MF8E4AM/A?cid=aos-cl-seo-pla-watch",
+        "envio": "Entrega gratuita"
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "nombre": "Reloj Inteligente Apple Watch Se 3 Gps",
+    "categoria": "smartwatch",
+    "imagen": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTFkmf-B34tO4Pvi3ldADdykfkmC0KlDYOsrnJtB5HWy3gFeAOoe9KwVwv1YFGdRophJugl8wVsVk7WIB1S5WfOVR21x-fZz_CnUeK_z6T8JO6IMLCHzlxA",
+    "rating": 4.8,
+    "descripcion": "Reloj Inteligente Apple Watch Se 3 Gps — comparado en 2 tienda(s).",
+    "stock": 22,
+    "ofertas": [
+      {
+        "tienda": "Lider",
+        "precio": 284990,
+        "link": "https://www.lider.cl/ip/relojes-inteligentes/smartwatch-apple-watch-se-3-gps-40mm-aluminio-midnight/00733139189124?channable=050ee6696400303037333331333931383931323422",
+        "envio": "Entrega gratuita"
+      },
+      {
+        "tienda": "Falabella.com",
+        "precio": 345990,
+        "link": "https://www.falabella.com/falabella-cl/product/153678495/apple-reloj-se-3-mep94-40mm-con-caja-de-aluminio-medianoche-y-correa-deportiva-medianoche-s-m/153678496",
+        "envio": "Entrega gratuita"
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "nombre": "Samsung S30GD Monitor FHD",
+    "categoria": "monitor",
+    "imagen": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQUBl7nxIkBtx5z7VVZ4a2iKLktbaeniQATy-nmC14LFx-BXjJW8E9_BEbW3u9A5-K0TEWvJeZXRwn37S_6IZ-kq0xjzHUHxazi6se0IojwXyB71S_HtzXkdQ",
+    "rating": 4.8,
+    "descripcion": "Samsung S30GD Monitor FHD — comparado en 5 tienda(s).",
+    "stock": 29,
+    "ofertas": [
+      {
+        "tienda": "pc Factory",
+        "precio": 69990,
+        "link": "https://www.pcfactory.cl/producto/54391-samsung-monitor-samsung-22--fhd-panel-ips-essential-s3-100-hz-5ms-ls22d300galxzs?srsltid=AfmBOopTzHlNVW_yuVnOI0ffHAYjilEyBALfaGuLf5Bbd3Rl1hk8q2XxbwY",
+        "envio": "Entrega por $3.990"
+      },
+      {
+        "tienda": "Tecno Más",
+        "precio": 65990,
+        "link": "https://tecnomas.cl/producto/samsung-ls22d300galxzs?srsltid=AfmBOoo-JNlQRMz5stpYnHAMxr4Rd_a2LrdZx4x4CW93GozwUBBHIO55I5M",
+        "envio": "Entrega gratuita"
+      },
+      {
+        "tienda": "Centrale.cl",
+        "precio": 71570,
+        "link": "https://centrale.cl/producto/monitor-samsung-essential-s3-s30gd-22-full-hd-1920x1080-panel-ips-5ms/?srsltid=AfmBOopaPggb7t98DpxAp1mMKnBeQwW1bS04QtXhYGTf6ArbtFnD32akwcU",
+        "envio": "Entrega por $1"
+      },
+      {
+        "tienda": "Sodimac",
+        "precio": 78990,
+        "link": "https://www.sodimac.cl/sodimac-cl/articulo/153976585/monitor-samsung-essential-s30gd-22-fhd-100hz-ips/153976586",
+        "envio": "Devoluciones gratis por 30 días"
+      },
+      {
+        "tienda": "samsung.com",
+        "precio": 79990,
+        "link": "https://www.samsung.com/cl/monitors/full-hd-1080p/essential-monitor-s3-s30gd-22-inch-fhd-ips-100hz-ls22d300galxzs/?srsltid=AfmBOorQLcFY5rHeCIykxWfdddIn71ORAcQNKIHs2fPSpsINIQVBOQaBMvE",
+        "envio": "Entrega gratuita"
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "nombre": "Monitor 22\" Full HD, Panel IPS, 100Hz",
+    "categoria": "monitor",
+    "imagen": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQHawe11IcJDs__34RIejYhbr9_2VQkus-d0ArVH-MoS-NiDLC9-8sGB1CWLSytjJ5Ny9Ccjol0aeOTyCS3Vxi-5SIDsGk9-CNkdwHA2APdt4zWf5LREkci0g",
+    "rating": null,
+    "descripcion": "Monitor 22\" Full HD, Panel IPS, 100Hz — comparado en 1 tienda(s).",
+    "stock": 10,
+    "ofertas": [
+      {
+        "tienda": "pc Factory",
+        "precio": 65990,
+        "link": "https://www.pcfactory.cl/producto/49127-gear-monitor-22-full-hd-panel-ips-100hz?srsltid=AfmBOorbrlrnGNYVGoiLyP9m6tl8-WQNDiqAWEd53SPhwjTE_VOZ0fyi2Qc",
+        "envio": "Entrega por $3.990"
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "nombre": "Monitor PC Gamer Curvo 32 Pulgadas Hosser Fhd Gaming",
+    "categoria": "monitor",
+    "imagen": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSrJzY_v-8nWw56OYZNz-zjVrE_G519vEQZsAxYifOgwowoUMEJCzQpoZ2XrJeUARQ2apO8N8j1QHCWx3IilwM6oQ_H2uhT_1_kFII8KLTzbJVS-o2TAk3kjg",
+    "rating": 4.4,
+    "descripcion": "Monitor PC Gamer Curvo 32 Pulgadas Hosser Fhd Gaming — comparado en 3 tienda(s).",
+    "stock": 17,
+    "ofertas": [
+      {
+        "tienda": "Falabella.com",
+        "precio": 189990,
+        "link": "https://www.falabella.com/falabella-cl/product/147004915/Monitor-PC-Gamer-Curvo-32-Pulgadas-Hosser-100hz-Fhd-32-Gaming/147004916",
+        "envio": "Consultar"
       },
       {
         "tienda": "Sodimac",
@@ -561,45 +689,92 @@ export const PRODUCTOS_SEED: Producto[] = [
         "envio": "Devoluciones gratis por 30 días"
       },
       {
-        "tienda": "Falabella.com",
+        "tienda": "Lider",
         "precio": 189990,
-        "link": "https://www.falabella.com/falabella-cl/product/147004915/Monitor-PC-Gamer-Curvo-32-Pulgadas-Hosser-100hz-Fhd-32-Gaming/147004916",
-        "envio": "Consultar"
+        "link": "https://www.lider.cl/ip/accesorios-computacion/monitor-pc-gamer-curvo-32-pulgadas-hosser-fhd-gaming/00079919251824?channable=050ee6696400303030373939313932353138323471",
+        "envio": "Entrega gratuita"
       }
     ]
   },
   {
-    "id": 20,
-    "nombre": "Monitor Gaming Xiaomi G27i",
+    "id": 24,
+    "nombre": "Monitor Xiaomi A22i",
     "categoria": "monitor",
-    "imagen": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQL2LA6TZoHVYPkPbr-mYC-8AKaa7T4gyUN6Z9iwNjpr8zMh0jxGUM9kYgrYJ_Md1sscFdvjYiS4GjdNzVVTfrAItnPCc0J9BLaarsELOwe8BwCwLcVx57Lfg",
+    "imagen": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcS56wU4oKLSNp2zRArqX5iQ2cm9Lo95I9GqV7oyMWnXEfJi9JVdygn_w16WIUcUGMU874Q3OBFQ4R1cU_T5Ji4kAKcmf6bWlyF2WvQOTBM7IVY1q3Q7fsU9GA",
     "rating": 4.8,
-    "descripcion": "Monitor Gaming Xiaomi G27i — comparado en 4 tienda(s).",
-    "stock": 22,
+    "descripcion": "Monitor Xiaomi A22i — comparado en 5 tienda(s).",
+    "stock": 24,
     "ofertas": [
       {
-        "tienda": "Techinn.com",
-        "precio": 104845,
-        "link": "https://www.tradeinn.com/techinn/es/xiaomi-monitor-gaming-g27i-27-fhd-ips-lcd-165hz/141526062/p?utm_source=google_products&utm_medium=merchant&id_producte=145657724&country=cl&srsltid=AfmBOooN_7Fz03iLw2MLHX13FCMIDHFQ6f6ER2b1zmHBReNmievtiTIzYEI",
-        "envio": "Entrega por $72.840"
+        "tienda": "Winpy",
+        "precio": 69920,
+        "link": "https://www.winpy.cl/venta/monitor-xiaomi-a22i-de-21-4-ips-full-hd-75hz-hdmi-vga-vesa/?srsltid=AfmBOopxvKNTVN6kgbuWe_N5pzs58KF1yyzotJayfeZ5909m9vef-wln1Rw",
+        "envio": "Entrega por $5.990"
       },
       {
-        "tienda": "Sodimac",
-        "precio": 139900,
-        "link": "https://www.sodimac.cl/sodimac-cl/articulo/154406751/monitor-xiaomi-gaming-27-g27i-fhd-2026-color-negro/154406752",
-        "envio": "Devoluciones gratis por 30 días"
+        "tienda": "Centrale.cl",
+        "precio": 70850,
+        "link": "https://centrale.cl/producto/monitor-xiaomi-a22i-21-5-full-hd-1080p-hdmi-75hz/?srsltid=AfmBOoolgFbBIPsgiL3QEWN_CRHvUqVuW-6zXbZslyU0Pe44JfHyt6tIKKI",
+        "envio": "Entrega por $1"
       },
       {
-        "tienda": "Falabella.com",
-        "precio": 139900,
-        "link": "https://www.falabella.com/falabella-cl/product/154406751/monitor-xiaomi-gaming-27-g27i-fhd-2026-color-negro/154406752",
+        "tienda": "SP Digital",
+        "precio": 75380,
+        "link": "https://www.spdigital.cl/xiaomi-led-backlit-lcd-monitor-2145-1920-x-1080-hdmi-a22i?srsltid=AfmBOoroOTPxrocYFGLRk9OKNRrwYxw7vpde0CwwtD6o7CzfQ89fG87Ey8o",
         "envio": "Consultar"
       },
       {
-        "tienda": "Xiaomi Chile",
-        "precio": 149990,
-        "link": "https://www.mi.com/cl/product/xiaomi-gaming-monitor-g27i/?skupanel=1&gid=4223714434",
+        "tienda": "Lider",
+        "precio": 89990,
+        "link": "https://www.lider.cl/ip/accesorios-computacion/xiaomi-monitor-a22i/00694194870031?channable=050ee66964003030363934313934383730303331bd",
         "envio": "Entrega gratuita"
+      },
+      {
+        "tienda": "Sodimac",
+        "precio": 99900,
+        "link": "https://www.sodimac.cl/sodimac-cl/articulo/154377297/monitor-xiaomi-a22i-21-45-fhd-color-negro/154377298",
+        "envio": "Devoluciones gratis por 30 días"
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "nombre": "Monitor HP Gaming OMEN 27",
+    "categoria": "monitor",
+    "imagen": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSVa9Qz8NvLcf_phOaWKuAnRDqXcSyBGbRMCfGnQADXMaYNemKuSRiAeyNWd-g0jbe1jknJ35XfMKpnmKKhREzquXo2_rYk9n-85TobBZcaLWC8ClgCEs2dLg",
+    "rating": 4.6,
+    "descripcion": "Monitor HP Gaming OMEN 27 — comparado en 5 tienda(s).",
+    "stock": 5,
+    "ofertas": [
+      {
+        "tienda": "abc.cl",
+        "precio": 179990,
+        "link": "https://www.abc.cl/monitor-gamer-hp-780f9aa-27-1920-x-1080-fhd/28849672.html?srsltid=AfmBOopsn1pXLQQjMoUVV8cqef8oD8qHxWezNxhO_1ckhKnGt89nMpK6j7o",
+        "envio": "Consultar"
+      },
+      {
+        "tienda": "Paris.cl",
+        "precio": 169990,
+        "link": "https://www.paris.cl/MKSSRUH3IL.html?utm_source=google&utm_medium=organic&utm_campaign=organicshopping",
+        "envio": "Entrega gratuita"
+      },
+      {
+        "tienda": "Lider",
+        "precio": 194990,
+        "link": "https://www.lider.cl/ip/accesorios-computacion/monitor-gamer-hp-omen-27-fhd-1920x1080-ips-2xhdmi-dp-vesa100x100-1ms-165hz-780f9aa/00019702961482?channable=050ee66964003030303139373032393631343832d9",
+        "envio": "Entrega gratuita"
+      },
+      {
+        "tienda": "Sodimac",
+        "precio": 199990,
+        "link": "https://www.sodimac.cl/sodimac-cl/articulo/143702172/Monitor-HP-Gaming-OMEN-27/143702173",
+        "envio": "Devoluciones gratis por 30 días"
+      },
+      {
+        "tienda": "pc Factory",
+        "precio": 209990,
+        "link": "https://www.pcfactory.cl/producto/56040-hp-monitor-omen-27-inch-fhd-165hz?srsltid=AfmBOopDuQ4vwsWNXoKPfanqA1-OEA0bGw2kRwr7-1qS3-MHKr8NwjwtdrE",
+        "envio": "Entrega por $3.990"
       }
     ]
   }
