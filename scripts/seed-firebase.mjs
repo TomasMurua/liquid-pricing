@@ -25,7 +25,11 @@ async function put(ruta, data) {
   return res.json();
 }
 
-await put('productos', productos);
-await put('usuarios', usuarios);
+// Guardar como OBJETO con keys únicas (p1, p2… / u1, u2…) en vez de array:
+// así eliminar un producto borra solo ese y no colapsa el nodo completo.
+const prodObj = Object.fromEntries(productos.map((p) => [`p${p.id}`, p]));
+const userObj = Object.fromEntries(usuarios.map((u, i) => [`u${i + 1}`, u]));
+await put('productos', prodObj);
+await put('usuarios', userObj);
 
 console.log(`OK: ${productos.length} productos y ${usuarios.length} usuarios sembrados en Firebase.`);
