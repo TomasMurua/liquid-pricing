@@ -1,0 +1,122 @@
+Liquid Pricing - Comparador de precios de retailers chilenos
+Tomas Murua - DSY2202 Desarrollo Full Stack II
+Evaluacion Final Transversal
+
+En este archivo explico las librerias que instale, como genero la documentacion y de donde
+consume los datos la aplicacion.
+
+
+Librerias que instale
+---------------------
+
+El proyecto esta hecho con Angular 19. Aparte del framework, instale estas librerias:
+
+- Bootstrap 5.3 (npm install bootstrap). La uso para toda la maquetacion con el grid de 12
+  columnas y para los componentes de interfaz: navbar, formularios, tablas y botones. Es lo
+  que hace que la aplicacion se adapte a los distintos tamanos de pantalla. Queda registrada
+  en angular.json, tanto en styles como en scripts.
+
+- Bootstrap Icons (npm install bootstrap-icons). Los iconos que uso en el catalogo, el
+  carrito, las estrellas de valoracion y los botones de los mantenedores.
+
+- Compodoc (npm install -D @compodoc/compodoc). Es la libreria con la que genero la
+  documentacion del proyecto.
+
+- Jasmine y Karma (jasmine-core, karma, karma-jasmine, karma-chrome-launcher,
+  karma-jasmine-html-reporter y karma-coverage). Vienen con la configuracion de Angular y son
+  las que ejecutan las pruebas unitarias.
+
+
+La documentacion
+----------------
+
+Ocupo Compodoc, que arma un sitio HTML navegable leyendo los comentarios que escribi en el
+codigo.
+
+La configuracion esta en tsconfig.doc.json y deje el script en package.json, asi que se
+genera con:
+
+    npm run docs
+
+Eso crea la carpeta documentation/, que se abre con documentation/index.html. Ahi quedan
+listados los componentes, los servicios, los guards, las interfaces y las rutas, cada uno con
+la descripcion que puse en sus comentarios. Tambien arma el grafico de dependencias.
+
+La carpeta documentation/ va incluida en el ZIP de la entrega.
+
+
+De donde vienen los datos (JSON)
+--------------------------------
+
+La aplicacion no tiene los datos escritos en el codigo: los consume desde Firebase Realtime
+Database, que los expone como JSON mediante una API REST.
+
+La URL del backend es:
+
+    https://liquid-pricing-default-rtdb.firebaseio.com
+
+De ahi consumo dos nodos: /productos.json, que tiene el catalogo con las ofertas de cada
+tienda, y /usuarios.json, con los usuarios y su rol.
+
+Para consumirlos uso HttpClient de Angular, en los servicios que estan en
+src/app/core/services/. Los metodos que ocupo son:
+
+    GET     /productos.json           listar el catalogo
+    GET     /productos/{key}.json     traer un producto
+    POST    /productos.json           crear
+    PUT     /productos/{key}.json     editar
+    DELETE  /productos/{key}.json     eliminar
+
+Los mismos metodos aplican sobre /usuarios.json. Todo esto se ejercita desde las pantallas de
+administracion: los mantenedores de productos, de usuarios y el de inventario.
+
+Los datos los guardo como un objeto donde cada clave identifica un registro (p1, p2, ... y
+u1, u2, ...), para que al editar o eliminar se apunte solo a ese registro. Un producto se ve
+asi:
+
+    {
+      "p1": {
+        "id": 1,
+        "nombre": "Apple Macbook Neo 13 chip A18",
+        "categoria": "notebook",
+        "imagen": "https://...",
+        "rating": 4.9,
+        "descripcion": "...",
+        "stock": 19,
+        "ofertas": [
+          {
+            "tienda": "Falabella.com",
+            "precio": 719990,
+            "link": "https://www.falabella.com/...",
+            "envio": "Entrega gratuita"
+          }
+        ]
+      }
+    }
+
+El archivo con todos los datos va en el ZIP, en scripts/seed-data.json. Es el mismo contenido
+que subo a Firebase corriendo "node scripts/seed-firebase.mjs".
+
+Los productos son reales: los saque de Google Shopping para tiendas chilenas con un script
+que corro localmente (scripts/harvest.mjs). La clave de esa API la dejo en un archivo .env
+que no subo al repositorio ni queda en el frontend.
+
+Una cosa mas: la aplicacion puede trabajar con datos estaticos o contra Firebase, segun la
+bandera useBackend que esta en src/environments/. La version que esta publicada usa Firebase.
+
+
+Datos para revisar el proyecto
+------------------------------
+
+Aplicacion publicada:  https://liquid-pricing-ng.vercel.app
+Repositorio:           https://github.com/TomasMurua/liquid-pricing
+
+Usuarios de prueba:
+    admin@liquid.cl   / Admin123!     (administrador)
+    cliente@liquid.cl / Cliente123!   (cliente)
+
+Para levantarlo:
+    npm install
+    npm start                    corre en http://localhost:4200
+    npm test -- --watch=false    ejecuta las pruebas unitarias
+    npm run docs                 genera la documentacion
