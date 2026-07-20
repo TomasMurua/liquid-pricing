@@ -8,9 +8,9 @@ import { USUARIOS_SEED } from '../../data/usuarios.seed';
 
 /**
  * @description
- * Mantenedor de usuarios. En modo estático (Semana 6) persiste en
- * `localStorage` (inicializado con los seeds); en modo backend (Semana 8)
- * consume Firebase con GET/POST/PUT/DELETE.
+ * Mantenedor de usuarios. En modo estático persiste en `localStorage`
+ * (inicializado con los seeds); en modo backend consume Firebase con
+ * GET/POST/PUT/DELETE.
  */
 @Injectable({ providedIn: 'root' })
 export class UsuarioService {

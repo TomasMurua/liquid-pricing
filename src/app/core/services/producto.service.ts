@@ -9,9 +9,9 @@ import { PRODUCTOS_SEED } from '../../data/productos.seed';
 /**
  * @description
  * Acceso a productos con doble fuente según `environment.useBackend`:
- * en modo estático (Semana 6) opera sobre un arreglo en memoria a partir de
- * los seeds; en modo backend (Semana 8) consume Firebase Realtime Database
- * vía HttpClient con GET/POST/PUT/DELETE.
+ * en modo estático opera sobre un arreglo en memoria a partir de los seeds;
+ * en modo backend consume Firebase Realtime Database vía HttpClient con
+ * GET/POST/PUT/DELETE.
  */
 @Injectable({ providedIn: 'root' })
 export class ProductoService {
